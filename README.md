@@ -22,9 +22,13 @@ export default {
     project: ['./tsconfig.json', './tsconfig.node.json'],
     tsconfigRootDir: __dirname,
   },
-}
+};
 ```
 
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+https://www.figma.com/file/sQrUVHTlyogq3qGdkqGTXN/mockup?type=design&node-id=7-2&mode=design&t=fwfxCYdw2Vx7WKRY-0
+
+https://www.figma.com/file/6Hbo1oVua3YMpSRbvriEHr/mockup-(Copy)?type=design&node-id=0-1&mode=design&t=jDqIxQTTe7pitwjv-0

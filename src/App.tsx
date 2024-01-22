@@ -5,7 +5,7 @@ import { GlobalStyle } from './styles/global';
 export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <h1>Hello Word</h1>;
+      <h1>Hello Word</h1>
       <GlobalStyle />
     </ThemeProvider>
   );
