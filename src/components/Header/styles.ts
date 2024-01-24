@@ -13,28 +13,15 @@ export const ContainerHeader = styled.div`
   margin: auto;
   display: flex;
   justify-content: space-between;
+`;
 
-  //acessar div 1
-  :nth-of-type(1) {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    margin-left: 10px;
-  }
-
-  //acessar div 2
-  :nth-of-type(2) {
-    width: 50px;
-    height: 100%;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    margin-right: 10px;
-
-    img {
-      width: 13.14px;
-    }
-  }
+export const ContainerHeaderDiv01 = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-left: 20px;
+  margin-right: 10px;
+  flex-grow: 1;
 
   p {
     font-size: 0.75rem;
@@ -42,35 +29,58 @@ export const ContainerHeader = styled.div`
     text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.15);
   }
 
-  label {
-    width: 530px;
-    height: 28px;
-    padding: 1px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-    border-radius: 3px;
-
-    input {
-      width: 100%;
-      border: none;
-      background-color: white;
-      margin-left: 10px;
-    }
-    ::placeholder {
-      color: #9a9a9a;
-    }
-    :focus-visible {
-      outline: none;
-    }
-
+  @media (max-width: 400px) {
+    margin: 10px;
+    gap: 0.6rem;
     img {
-      width: 12.61px;
-      height: 13.5px;
-      margin-right: 10px;
+      width: 25px;
     }
+  }
+`;
 
-    @media (max-width: 900px) {
-      width: 100%;
-      max-width: 530px;
-    }
+export const StyledLabel = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 530px;
+  height: 28px;
+
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  border-radius: 3px;
+
+  input {
+    width: 100%;
+    border: none;
+    background-color: white;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  ::placeholder {
+    color: #9a9a9a;
+  }
+  :focus-visible {
+    outline: none;
+  }
+
+  img {
+    width: 13px;
+    margin-right: 10px;
+  }
+
+  @media (max-width: 900px) {
+    max-width: 315px;
+  }
+`;
+
+export const ContainerHeaderDiv02 = styled.div`
+  width: 50px;
+  height: 100%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  margin-right: 10px;
+
+  img {
+    width: 13.14px;
   }
 `;
