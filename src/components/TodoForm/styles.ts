@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const ContainerForm = styled.div`
   /* border: solid 5px red; */
-
+  width: 100%;
   max-width: 530px;
   height: 100px;
   margin: 30px 0px 50px;
