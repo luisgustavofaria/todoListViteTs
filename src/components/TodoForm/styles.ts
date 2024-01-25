@@ -3,15 +3,19 @@ import styled from 'styled-components';
 export const ContainerForm = styled.div`
   /* border: solid 5px red; */
 
-  width: 530px;
+  max-width: 530px;
   height: 100px;
-  margin: auto;
-  margin-top: 20px;
+  margin: 30px 0px 50px;
   display: flex;
   flex-direction: column;
-
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   background-color: white;
+
+  @media (max-width: 800px) {
+    width: 100%;
+    max-width: 390px;
+    border-radius: 20px;
+  }
 `;
 
 export const ContainerFormTitle = styled.div`
