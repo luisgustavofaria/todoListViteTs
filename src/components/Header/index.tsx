@@ -1,5 +1,5 @@
 import {
-  Container,
+  StyledHeader,
   ContainerHeader,
   ContainerHeaderDiv01,
   ContainerHeaderDiv02,
@@ -11,7 +11,7 @@ import search from '../../assets/search.svg';
 
 export function Header() {
   return (
-    <Container>
+    <StyledHeader>
       <ContainerHeader>
         <ContainerHeaderDiv01>
           <img src={coreNotesDesktop} alt="core-notes-desktop" />
@@ -25,6 +25,6 @@ export function Header() {
           <img src={deleted} alt="" />
         </ContainerHeaderDiv02>
       </ContainerHeader>
-    </Container>
+    </StyledHeader>
   );
 }

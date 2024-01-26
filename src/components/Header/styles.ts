@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const StyledHeader = styled.div`
   width: 100%;
   background-color: white;
   height: 3.56rem;
