@@ -6,6 +6,8 @@ import { Container01, Container02 } from './components/Container/styles';
 import { Todo } from './components/Todo';
 import { TodoForm } from './components/TodoForm';
 
+const todos = [1, 2, 3, 4];
+
 export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -13,9 +15,9 @@ export function App() {
       <Container01>
         <TodoForm />
         <Container02>
-          <Todo />
-          <Todo />
-          <Todo />
+          {todos.map(() => {
+            return <Todo />;
+          })}
         </Container02>
       </Container01>
       <GlobalStyle />
