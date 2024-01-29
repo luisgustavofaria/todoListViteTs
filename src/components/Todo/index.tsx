@@ -10,7 +10,12 @@ import edit from '../../assets/edit.svg';
 import colorEdit from '../../assets/color-edit.svg';
 import deleted from '../../assets/deleted.svg';
 
-export function Todo({ title, description }) {
+interface TodoProps {
+  title: string;
+  description: string;
+}
+
+export function Todo({ title, description }: TodoProps) {
   return (
     <ContainerTodo>
       <ContainerTodoTitle>

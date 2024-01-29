@@ -7,15 +7,15 @@ import {
 import favorited from '../../assets/favorited.svg';
 import { useState } from 'react';
 
-export function TodoForm({ onAddTodoList }) {
+interface TodoFormProps {
+  onAddTodoList: (title: string, description: string) => void;
+}
+
+export function TodoForm({ onAddTodoList }: TodoFormProps) {
   const [newTitle, setNewTitle] = useState('');
   const [newDescription, setNewDescription] = useState('');
 
-  function handleCreatedNewTodo(
-    event: React.ChangeEvent<
-      HTMLSelectElement | HTMLTextAreaElement | HTMLInputElement
-    >
-  ) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     onAddTodoList(newTitle, newDescription);
     setNewTitle('');
@@ -45,7 +45,7 @@ export function TodoForm({ onAddTodoList }) {
   }
 
   return (
-    <ContainerForm onSubmit={handleCreatedNewTodo}>
+    <ContainerForm onSubmit={handleSubmit}>
       <ContainerFormTitle>
         <input
           name="title"

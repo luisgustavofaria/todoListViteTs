@@ -8,17 +8,22 @@ import { TodoForm } from './components/TodoForm';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-export function App() {
-  const [todoLists, setTodoLists] = useState([]);
+interface TodoList {
+  id: string;
+  title: string;
+  description: string;
+}
 
-  function addTodoList(newTitle, newDescription) {
+export function App() {
+  const [todoLists, setTodoLists] = useState<TodoList[]>([]);
+
+  function addTodoList(newTitle: string, newDescription: string) {
     const data = {
       id: uuidv4(),
       title: newTitle,
       description: newDescription,
     };
     setTodoLists((oldstate) => [...oldstate, data]);
-    console.log(todoLists);
   }
 
   return (
