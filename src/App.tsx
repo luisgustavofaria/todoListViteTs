@@ -5,19 +5,35 @@ import { Header } from './components/Header';
 import { Container01, Container02 } from './components/Container/styles';
 import { Todo } from './components/Todo';
 import { TodoForm } from './components/TodoForm';
-
-const todos = [1, 2, 3, 4];
+import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 export function App() {
+  const [todoLists, setTodoLists] = useState([]);
+
+  function addTodoList(newTitle, newDescription) {
+    const data = {
+      id: uuidv4(),
+      title: newTitle,
+      description: newDescription,
+    };
+    setTodoLists((oldstate) => [...oldstate, data]);
+    console.log(todoLists);
+  }
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <Header />
       <Container01>
-        <TodoForm />
+        <TodoForm onAddTodoList={addTodoList} />
         <Container02>
-          {todos.map(() => {
-            return <Todo />;
-          })}
+          {todoLists.map((todo) => (
+            <Todo
+              key={todo.id}
+              title={todo.title}
+              description={todo.description}
+            />
+          ))}
         </Container02>
       </Container01>
       <GlobalStyle />

@@ -10,15 +10,15 @@ import edit from '../../assets/edit.svg';
 import colorEdit from '../../assets/color-edit.svg';
 import deleted from '../../assets/deleted.svg';
 
-export function Todo() {
+export function Todo({ title, description }) {
   return (
     <ContainerTodo>
       <ContainerTodoTitle>
-        <input type="text" placeholder="Título" />
+        <input type="text" value={title} />
         <img src={favorited} alt="" />
       </ContainerTodoTitle>
       <ContainerTodoTextArea>
-        <textarea>Criar Nota...</textarea>
+        <textarea>{description}</textarea>
       </ContainerTodoTextArea>
       <TodoFooter>
         <div>

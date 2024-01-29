@@ -52,7 +52,7 @@ export const ContainerFormTextArea = styled.div`
   padding: 5px 10px 2px;
   flex-grow: 1;
 
-  textarea {
+  input {
     font-size: 11px;
     color: #50656e;
     padding: 5px;
@@ -62,5 +62,9 @@ export const ContainerFormTextArea = styled.div`
     resize: none;
     background-color: white;
     overflow: hidden;
+  }
+
+  :focus-visible {
+    outline: none;
   }
 `;
