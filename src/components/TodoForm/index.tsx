@@ -2,6 +2,8 @@ import {
   ContainerForm,
   ContainerFormTextArea,
   ContainerFormTitle,
+  DescriptionFormInput,
+  TitleFormInput,
 } from './styles';
 
 import favorited from '../../assets/favorited.svg';
@@ -47,7 +49,7 @@ export function TodoForm({ onAddTodoList }: TodoFormProps) {
   return (
     <ContainerForm onSubmit={handleSubmit}>
       <ContainerFormTitle>
-        <input
+        <TitleFormInput
           name="title"
           type="text"
           placeholder="Título"
@@ -57,7 +59,7 @@ export function TodoForm({ onAddTodoList }: TodoFormProps) {
         <img src={favorited} alt="" />
       </ContainerFormTitle>
       <ContainerFormTextArea>
-        <input
+        <DescriptionFormInput
           name="description"
           type="text"
           placeholder="Criar Nota..."

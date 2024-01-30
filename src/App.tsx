@@ -15,7 +15,9 @@ interface TodoList {
 }
 
 export function App() {
-  const [todoLists, setTodoLists] = useState<TodoList[]>([]);
+  const [todoLists, setTodoLists] = useState<TodoList[]>([
+    { id: '1', title: 'primeiro', description: 'tarefa' },
+  ]);
 
   function addTodoList(newTitle: string, newDescription: string) {
     const data = {
