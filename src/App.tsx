@@ -25,7 +25,9 @@ export function App() {
       title: newTitle,
       description: newDescription,
     };
-    setTodoLists((oldstate) => [...oldstate, data]);
+    setTodoLists((oldstate) => [...oldstate, data]); //usar esse codigo para operaçoes assincronas
+    // setTodoLists([...todoLists, data]); esse codigo tbm funciona mas pode dar erro.
+    // Se durante o tempo de espera da operação assíncrona, um usuário adiciona um novo item à lista (addTodoList é chamado) nesse caso, se apertar enter rapido demais, com a abordagem direta (setTodoLists([...todoLists, data])) pode perder atualizações de estado.
   }
 
   return (
