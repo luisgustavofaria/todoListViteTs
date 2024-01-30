@@ -22,21 +22,13 @@ export function TodoForm({ onAddTodoList }: TodoFormProps) {
     setNewDescription('');
   }
 
-  function handleCreatedNewTitle(
-    event: React.ChangeEvent<
-      HTMLSelectElement | HTMLTextAreaElement | HTMLInputElement
-    >
-  ) {
+  function handleNewTitle(event: React.ChangeEvent<HTMLInputElement>) {
     event.preventDefault();
 
     setNewTitle(event?.target.value);
   }
 
-  function handleCreatedNewDescription(
-    event: React.ChangeEvent<
-      HTMLSelectElement | HTMLTextAreaElement | HTMLInputElement
-    >
-  ) {
+  function handleNewDescription(event: React.ChangeEvent<HTMLInputElement>) {
     event.preventDefault();
 
     setNewDescription(event?.target.value);
@@ -49,7 +41,7 @@ export function TodoForm({ onAddTodoList }: TodoFormProps) {
           name="title"
           type="text"
           placeholder="Título"
-          onChange={handleCreatedNewTitle}
+          onChange={handleNewTitle}
           value={newTitle}
         />
         <img src={favorited} alt="" />
@@ -59,7 +51,7 @@ export function TodoForm({ onAddTodoList }: TodoFormProps) {
           name="description"
           type="text"
           placeholder="Criar Nota..."
-          onChange={handleCreatedNewDescription}
+          onChange={handleNewDescription}
           value={newDescription}
         />
       </ContainerFormTextArea>
