@@ -28,7 +28,6 @@ export function TodoForm({ onAddTodoList }: TodoFormProps) {
     >
   ) {
     event.preventDefault();
-    console.log(event?.target.value);
 
     setNewTitle(event?.target.value);
   }
@@ -39,7 +38,6 @@ export function TodoForm({ onAddTodoList }: TodoFormProps) {
     >
   ) {
     event.preventDefault();
-    console.log(event?.target.value);
 
     setNewDescription(event?.target.value);
   }
