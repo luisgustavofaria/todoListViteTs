@@ -12,18 +12,24 @@ interface TodoList {
   id: string;
   title: string;
   description: string;
+  isFavorited: boolean;
 }
 
 export function App() {
   const [todoLists, setTodoLists] = useState<TodoList[]>([
-    { id: '1', title: 'primeiro', description: 'tarefa' },
+    { id: '1', title: 'primeiro', description: 'tarefa', isFavorited: true },
   ]);
 
-  function addTodoList(newTitle: string, newDescription: string) {
+  function addTodoList(
+    newTitle: string,
+    newDescription: string,
+    isFavorited: boolean
+  ) {
     const data = {
       id: uuidv4(),
       title: newTitle,
       description: newDescription,
+      isFavorited: isFavorited,
     };
     setTodoLists((oldstate) => [...oldstate, data]); //usar esse codigo para operaçoes assincronas
     // setTodoLists([...todoLists, data]); esse codigo tbm funciona mas pode dar erro.
@@ -41,6 +47,7 @@ export function App() {
               key={todo.id}
               title={todo.title}
               description={todo.description}
+              isFavorite={todo.isFavorited}
             />
           ))}
         </Container02>

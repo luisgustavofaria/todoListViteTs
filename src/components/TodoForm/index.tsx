@@ -5,21 +5,28 @@ import {
 } from './styles';
 
 import favorited from '../../assets/favorited.svg';
+import nofavorited from '../../assets/nofavorited.svg';
 import { useState } from 'react';
 
 interface TodoFormProps {
-  onAddTodoList: (title: string, description: string) => void;
+  onAddTodoList: (
+    title: string,
+    description: string,
+    isFavorited: boolean
+  ) => void;
 }
 
 export function TodoForm({ onAddTodoList }: TodoFormProps) {
   const [newTitle, setNewTitle] = useState('');
   const [newDescription, setNewDescription] = useState('');
+  const [isFavorited, setIsFavorited] = useState(Boolean);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    onAddTodoList(newTitle, newDescription);
+    onAddTodoList(newTitle, newDescription, isFavorited);
     setNewTitle('');
     setNewDescription('');
+    setIsFavorited(false);
   }
 
   function handleNewTitle(event: React.ChangeEvent<HTMLInputElement>) {
@@ -44,7 +51,7 @@ export function TodoForm({ onAddTodoList }: TodoFormProps) {
           onChange={handleNewTitle}
           value={newTitle}
         />
-        <img src={favorited} alt="" />
+        <img src={isFavorited ? nofavorited : favorited} alt="" />
       </ContainerFormTitle>
       <ContainerFormTextArea>
         <input
