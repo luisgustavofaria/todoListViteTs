@@ -57,6 +57,9 @@ export const ContainerTodoTextArea = styled.div`
     background-color: white;
     overflow: hidden;
   }
+  :focus-visible {
+    outline: none;
+  }
 `;
 
 export const TodoFooter = styled.div`

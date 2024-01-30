@@ -19,11 +19,11 @@ export function Todo({ title, description }: TodoProps) {
   return (
     <ContainerTodo>
       <ContainerTodoTitle>
-        <input type="text" value={title} />
+        <input type="text" name="title" value={title} />
         <img src={favorited} alt="" />
       </ContainerTodoTitle>
       <ContainerTodoTextArea>
-        <textarea>{description}</textarea>
+        <textarea name="description" value={description} />
       </ContainerTodoTextArea>
       <TodoFooter>
         <div>
