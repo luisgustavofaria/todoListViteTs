@@ -38,6 +38,7 @@ export const ContainerTodoTitle = styled.div`
 
   img {
     padding: 5px;
+    cursor: pointer;
   }
 `;
 

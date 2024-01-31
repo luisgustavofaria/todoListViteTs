@@ -19,7 +19,7 @@ interface TodoFormProps {
 export function TodoForm({ onAddTodoList }: TodoFormProps) {
   const [newTitle, setNewTitle] = useState('');
   const [newDescription, setNewDescription] = useState('');
-  const [isFavorited, setIsFavorited] = useState(Boolean);
+  const [isFavorited, setIsFavorited] = useState(false);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -41,6 +41,10 @@ export function TodoForm({ onAddTodoList }: TodoFormProps) {
     setNewDescription(event?.target.value);
   }
 
+  function changeFavorited() {
+    setIsFavorited((oldstate) => !oldstate);
+  }
+
   return (
     <ContainerForm onSubmit={handleSubmit}>
       <ContainerFormTitle>
@@ -51,7 +55,11 @@ export function TodoForm({ onAddTodoList }: TodoFormProps) {
           onChange={handleNewTitle}
           value={newTitle}
         />
-        <img src={isFavorited ? nofavorited : favorited} alt="" />
+        <img
+          onClick={changeFavorited}
+          src={isFavorited ? favorited : nofavorited}
+          alt=""
+        />
       </ContainerFormTitle>
       <ContainerFormTextArea>
         <input

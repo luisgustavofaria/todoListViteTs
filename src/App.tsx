@@ -47,7 +47,7 @@ export function App() {
               key={todo.id}
               title={todo.title}
               description={todo.description}
-              isFavorite={todo.isFavorited}
+              isFavorited={todo.isFavorited}
             />
           ))}
         </Container02>

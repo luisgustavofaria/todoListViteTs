@@ -49,6 +49,7 @@ export const ContainerFormTitle = styled.div`
   }
   img {
     padding: 5px;
+    cursor: pointer;
   }
 `;
 
