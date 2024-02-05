@@ -8,7 +8,7 @@ import { TodoForm } from './components/TodoForm';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-interface TodoList {
+export interface ITodoList {
   id: string;
   title: string;
   description: string;
@@ -16,11 +16,11 @@ interface TodoList {
 }
 
 export function App() {
-  const [todoLists, setTodoLists] = useState<TodoList[]>([
+  const [todoList, setTodoList] = useState<ITodoList[]>([
     { id: '1', title: 'primeiro', description: 'tarefa', isFavorited: true },
   ]);
 
-  function addTodoList(
+  function addToDo(
     newTitle: string,
     newDescription: string,
     isFavorited: boolean
@@ -31,24 +31,23 @@ export function App() {
       description: newDescription,
       isFavorited: isFavorited,
     };
-    setTodoLists((oldstate) => [...oldstate, data]); //usar esse codigo para operaçoes assincronas
+    setTodoList((oldstate) => [...oldstate, data]); //usar esse codigo para operaçoes assincronas
     // setTodoLists([...todoLists, data]); esse codigo tbm funciona mas pode dar erro.
     // Se durante o tempo de espera da operação assíncrona, um usuário adiciona um novo item à lista (addTodoList é chamado) nesse caso, se apertar enter rapido demais, com a abordagem direta (setTodoLists([...todoLists, data])) pode perder atualizações de estado.
+  }
+
+  function deleteToDo() {
+    // const newToDo = todoList.filter(() =>{} )
   }
 
   return (
     <ThemeProvider theme={defaultTheme}>
       <Header />
       <Container01>
-        <TodoForm onAddTodoList={addTodoList} />
+        <TodoForm onAddToDo={addToDo} />
         <Container02>
-          {todoLists.map((todo) => (
-            <Todo
-              key={todo.id}
-              title={todo.title}
-              description={todo.description}
-              isFavorited={todo.isFavorited}
-            />
+          {todoList.map((todo) => (
+            <Todo key={todo.id} todo={todo} onDeleteToDo={deleteToDo} />
           ))}
         </Container02>
       </Container01>

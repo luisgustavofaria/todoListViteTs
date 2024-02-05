@@ -9,21 +9,17 @@ import nofavorited from '../../assets/nofavorited.svg';
 import { useState } from 'react';
 
 interface TodoFormProps {
-  onAddTodoList: (
-    title: string,
-    description: string,
-    isFavorited: boolean
-  ) => void;
+  onAddToDo: (title: string, description: string, isFavorited: boolean) => void;
 }
 
-export function TodoForm({ onAddTodoList }: TodoFormProps) {
+export function TodoForm({ onAddToDo }: TodoFormProps) {
   const [newTitle, setNewTitle] = useState('');
   const [newDescription, setNewDescription] = useState('');
   const [isFavorited, setIsFavorited] = useState(false);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    onAddTodoList(newTitle, newDescription, isFavorited);
+    onAddToDo(newTitle, newDescription, isFavorited);
     setNewTitle('');
     setNewDescription('');
     setIsFavorited(false);
