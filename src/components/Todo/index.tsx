@@ -3,19 +3,19 @@ import {
   ContainerTodoTextArea,
   ContainerTodoTitle,
   TodoFooter,
-} from './styles';
+} from "./styles";
 
-import favorited from '../../assets/favorited.svg';
-import nofavorited from '../../assets/nofavorited.svg';
-import edit from '../../assets/edit.svg';
-import colorEdit from '../../assets/color-edit.svg';
-import deleted from '../../assets/deleted.svg';
-import { useState } from 'react';
-import { ITodoList } from '../../App';
+import favorited from "../../assets/favorited.svg";
+import nofavorited from "../../assets/nofavorited.svg";
+import edit from "../../assets/edit.svg";
+import colorEdit from "../../assets/color-edit.svg";
+import deleted from "../../assets/deleted.svg";
+import { useState } from "react";
+import { ITodoList } from "../../App";
 
 interface TodoProps {
   todo: ITodoList;
-  onDeleteToDo: (todo: string) => void;
+  onDeleteToDo: (todoID: string) => void;
 }
 
 export function Todo({ todo, onDeleteToDo }: TodoProps) {
@@ -44,6 +44,8 @@ export function Todo({ todo, onDeleteToDo }: TodoProps) {
           <img src={colorEdit} alt="" />
         </div>
         <img onClick={() => onDeleteToDo(todo.id)} src={deleted} alt="" />
+        {/* necessário usar arrow function para executar a função quando clicar no botao  */}
+        {/* se usar onDeleteToDo(todo.id) a função é chamada quando renderizar a tela */}
       </TodoFooter>
     </ContainerTodo>
   );

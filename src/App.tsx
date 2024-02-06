@@ -1,12 +1,12 @@
-import { ThemeProvider } from 'styled-components';
-import { defaultTheme } from './styles/themes/default';
-import { GlobalStyle } from './styles/global';
-import { Header } from './components/Header';
-import { Container01, Container02 } from './components/Container/styles';
-import { Todo } from './components/Todo';
-import { TodoForm } from './components/TodoForm';
-import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import { ThemeProvider } from "styled-components";
+import { defaultTheme } from "./styles/themes/default";
+import { GlobalStyle } from "./styles/global";
+import { Header } from "./components/Header";
+import { Container01, Container02 } from "./components/Container/styles";
+import { Todo } from "./components/Todo";
+import { TodoForm } from "./components/TodoForm";
+import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export interface ITodoList {
   id: string;
@@ -17,13 +17,13 @@ export interface ITodoList {
 
 export function App() {
   const [todoList, setTodoList] = useState<ITodoList[]>([
-    { id: '1', title: 'primeiro', description: 'tarefa', isFavorited: true },
+    { id: "1", title: "primeiro", description: "tarefa", isFavorited: true },
   ]);
 
   function addToDo(
     newTitle: string,
     newDescription: string,
-    isFavorited: boolean
+    isFavorited: boolean,
   ) {
     const data = {
       id: uuidv4(),
@@ -34,12 +34,16 @@ export function App() {
     setTodoList((oldstate) => [...oldstate, data]); //usar esse codigo para operaçoes assincronas
     // setTodoLists([...todoLists, data]); esse codigo tbm funciona mas pode dar erro.
     // Se durante o tempo de espera da operação assíncrona, um usuário adiciona um novo item à lista (addTodoList é chamado) nesse caso, se apertar enter rapido demais, com a abordagem direta (setTodoLists([...todoLists, data])) pode perder atualizações de estado.
+    //
+    // console.log(data.id);
   }
 
-  function deleteToDo() {
-    console.log('aqui');
+  function deleteToDo(todoID: string) {
+    // const newToDo = todoList.filter((todo) => todo.id !== todoID);
+    // setTodoList(newToDo);
 
-    // const newToDo = todoList.filter(() =>{} )
+    setTodoList((oldstate) => oldstate.filter((todo) => todo.id !== todoID));
+    //usar esse codigo para operaçoes assincronas
   }
 
   return (
