@@ -15,7 +15,7 @@ import { ITodoList } from '../../App';
 
 interface TodoProps {
   todo: ITodoList;
-  onDeleteToDo: () => void;
+  onDeleteToDo: (todo: string) => void;
 }
 
 export function Todo({ todo, onDeleteToDo }: TodoProps) {
@@ -43,7 +43,7 @@ export function Todo({ todo, onDeleteToDo }: TodoProps) {
           <img src={edit} alt="" />
           <img src={colorEdit} alt="" />
         </div>
-        <img onClick={onDeleteToDo} src={deleted} alt="" />
+        <img onClick={() => onDeleteToDo(todo.id)} src={deleted} alt="" />
       </TodoFooter>
     </ContainerTodo>
   );

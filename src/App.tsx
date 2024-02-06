@@ -37,6 +37,8 @@ export function App() {
   }
 
   function deleteToDo() {
+    console.log('aqui');
+
     // const newToDo = todoList.filter(() =>{} )
   }
 
