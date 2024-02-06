@@ -16,7 +16,7 @@ export interface ITodoList {
 }
 
 export function App() {
-  const [todoList, setTodoList] = useState<ITodoList[]>([
+  const [newToDo, setNewToDo] = useState<ITodoList[]>([
     { id: "1", title: "primeiro", description: "tarefa", isFavorited: true },
   ]);
 
@@ -31,18 +31,19 @@ export function App() {
       description: newDescription,
       isFavorited: isFavorited,
     };
-    setTodoList((oldstate) => [...oldstate, data]); //usar esse codigo para operaçoes assincronas
-    // setTodoLists([...todoLists, data]); esse codigo tbm funciona mas pode dar erro.
+    setNewToDo((oldstate) => [...oldstate, data]); //usar esse codigo para operaçoes assincronas
+    // setTodoLists([...newToDo, data]); esse codigo tbm funciona mas pode dar erro.
     // Se durante o tempo de espera da operação assíncrona, um usuário adiciona um novo item à lista (addTodoList é chamado) nesse caso, se apertar enter rapido demais, com a abordagem direta (setTodoLists([...todoLists, data])) pode perder atualizações de estado.
     //
     // console.log(data.id);
   }
 
   function deleteToDo(todoID: string) {
-    // const newToDo = todoList.filter((todo) => todo.id !== todoID);
-    // setTodoList(newToDo);
+    // const newToDoList = todoList.filter((todo) => todo.id !== todoID);
+    // setNewToDo(newToDoList);
+    // esse codigo tbm funciona mas pode dar erro
 
-    setTodoList((oldstate) => oldstate.filter((todo) => todo.id !== todoID));
+    setNewToDo((oldstate) => oldstate.filter((todo) => todo.id !== todoID));
     //usar esse codigo para operaçoes assincronas
   }
 
@@ -52,7 +53,7 @@ export function App() {
       <Container01>
         <TodoForm onAddToDo={addToDo} />
         <Container02>
-          {todoList.map((todo) => (
+          {newToDo.map((todo) => (
             <Todo key={todo.id} todo={todo} onDeleteToDo={deleteToDo} />
           ))}
         </Container02>

@@ -19,10 +19,10 @@ interface TodoProps {
 }
 
 export function Todo({ todo, onDeleteToDo }: TodoProps) {
-  const [star, setStar] = useState(todo.isFavorited);
+  const [favorite, setFavorite] = useState(todo.isFavorited);
 
   function changeFavorited() {
-    setStar((oldstate) => !oldstate);
+    setFavorite((oldstate) => !oldstate);
   }
 
   return (
@@ -31,7 +31,7 @@ export function Todo({ todo, onDeleteToDo }: TodoProps) {
         <input type="text" name="title" defaultValue={todo.title} />
         <img
           onClick={changeFavorited}
-          src={star ? favorited : nofavorited}
+          src={favorite ? favorited : nofavorited}
           alt=""
         />
       </ContainerTodoTitle>
