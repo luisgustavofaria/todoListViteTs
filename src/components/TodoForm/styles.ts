@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ContainerForm = styled.form`
   /* border: solid 5px red; */
   width: 100%;
   max-width: 530px;
   height: 100px;
-  margin: 30px 0px 50px;
+  margin: 30px 0px 0px;
   display: flex;
   flex-direction: column;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
