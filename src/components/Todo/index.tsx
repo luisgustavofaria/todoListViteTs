@@ -3,22 +3,26 @@ import {
   ContainerTodoTextArea,
   ContainerTodoTitle,
   TodoFooter,
-} from './styles';
+} from "./styles";
 
-import favorited from '../../assets/favorited.svg';
-import nofavorited from '../../assets/nofavorited.svg';
-import noEdit from '../../assets/noEdit.svg';
-import edit from '../../assets/edit.svg';
-import colorEdit from '../../assets/color-edit.svg';
-import deleted from '../../assets/deleted.svg';
-import { useState } from 'react';
-import { ITodoList } from '../../App';
+import favorited from "../../assets/favorited.svg";
+import nofavorited from "../../assets/nofavorited.svg";
+import noEdit from "../../assets/noEdit.svg";
+import edit from "../../assets/edit.svg";
+import colorEdit from "../../assets/color-edit.svg";
+import deleted from "../../assets/deleted.svg";
+import { useState } from "react";
+import { ITodoList } from "../../App";
 
 interface TodoProps {
   todo: ITodoList;
   onDeleteTodo: (todoID: string) => void;
   onToggleFavorite: (todoID: string) => void;
-  onEditTodo: (todoID: string, title: string, description: string) => void;
+  onEditTodo: (
+    todoID: string,
+    editTitle: string,
+    editDescription: string,
+  ) => void;
 }
 
 export function Todo({
@@ -28,12 +32,14 @@ export function Todo({
   onEditTodo,
 }: TodoProps) {
   const [disabled, setDisabled] = useState(true);
+  const [editTitle, setEditTitle] = useState(todo.title);
+  const [editDescription, setEditDescription] = useState(todo.description);
 
   function onDisableTodo() {
     setDisabled((oldstate) => !oldstate);
 
     if (!disabled) {
-      onEditTodo(todo.id, todo.title, todo.description);
+      onEditTodo(todo.id, editTitle, editDescription);
     }
   }
 
@@ -44,7 +50,8 @@ export function Todo({
           type="text"
           name="title"
           disabled={disabled}
-          defaultValue={todo.title}
+          value={editTitle}
+          onChange={(e) => setEditTitle(e.target.value)}
         />
         <img
           onClick={() => onToggleFavorite(todo.id)}
@@ -56,7 +63,8 @@ export function Todo({
         <textarea
           name="description"
           disabled={disabled}
-          defaultValue={todo.description}
+          value={editDescription}
+          onChange={(e) => setEditDescription(e.target.value)}
         />
       </ContainerTodoTextArea>
       <TodoFooter>
