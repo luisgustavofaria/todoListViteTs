@@ -7,8 +7,8 @@ import {
 
 import favorited from '../../assets/favorited.svg';
 import nofavorited from '../../assets/nofavorited.svg';
+import noEdit from '../../assets/noEdit.svg';
 import edit from '../../assets/edit.svg';
-import editing from '../../assets/editing.svg';
 import colorEdit from '../../assets/color-edit.svg';
 import deleted from '../../assets/deleted.svg';
 import { useState } from 'react';
@@ -18,13 +18,23 @@ interface TodoProps {
   todo: ITodoList;
   onDeleteTodo: (todoID: string) => void;
   onToggleFavorite: (todoID: string) => void;
+  onEditTodo: (todoID: string, title: string, description: string) => void;
 }
 
-export function Todo({ todo, onDeleteTodo, onToggleFavorite }: TodoProps) {
+export function Todo({
+  todo,
+  onDeleteTodo,
+  onToggleFavorite,
+  onEditTodo,
+}: TodoProps) {
   const [disabled, setDisabled] = useState(true);
 
-  function onEditTodo() {
+  function onDisableTodo() {
     setDisabled((oldstate) => !oldstate);
+
+    if (!disabled) {
+      onEditTodo(todo.id, todo.title, todo.description);
+    }
   }
 
   return (
@@ -51,7 +61,7 @@ export function Todo({ todo, onDeleteTodo, onToggleFavorite }: TodoProps) {
       </ContainerTodoTextArea>
       <TodoFooter>
         <div>
-          <img onClick={onEditTodo} src={disabled ? edit : editing} alt="" />
+          <img onClick={onDisableTodo} src={disabled ? noEdit : edit} alt="" />
           <img src={colorEdit} alt="" />
         </div>
         <img onClick={() => onDeleteTodo(todo.id)} src={deleted} alt="" />

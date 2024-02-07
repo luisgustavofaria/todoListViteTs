@@ -49,15 +49,6 @@ export function App() {
     // console.log(data.id);
   }
 
-  function deleteTodo(todoID: string) {
-    // const newTodoList = todoList.filter((todo) => todo.id !== todoID);
-    // setNewToDo(newTodoList);
-    // esse codigo tbm funciona mas pode dar erro e pode perder atualizações de estado.
-
-    setTodoList((oldstate) => oldstate.filter((todo) => todo.id !== todoID));
-    //usar esse codigo para operaçoes assincronas
-  }
-
   function toggleFavorite(todoID: string) {
     // const newTodoList = todoList.map((todo) => {
     //   if (todo.id === todoID) {
@@ -80,6 +71,46 @@ export function App() {
     //usar esse codigo para operaçoes assincronas
   }
 
+  function editTodo(
+    todoID: string,
+    editTitle: string,
+    editDescription: string
+  ) {
+    // const newTodoList = todoList.map((todo) => {
+    //   if (todo.id === todoID) {
+    //     return {
+    //       ...todo,
+    //       title: editTitle,
+    //       description: editDescription,
+    //     };
+    //   }
+    //   return todo;
+    // });
+
+    // setTodoList(newTodoList);
+    // console.log(newTodoList);
+
+    //esse codigo tbm funciona mas pode dar erro.
+
+    setTodoList((oldstate) =>
+      oldstate.map((todo) =>
+        todo.id === todoID
+          ? { ...todo, title: editTitle, description: editDescription }
+          : todo
+      )
+    );
+    console.log(todoList);
+  }
+
+  function deleteTodo(todoID: string) {
+    // const newTodoList = todoList.filter((todo) => todo.id !== todoID);
+    // setNewToDo(newTodoList);
+    // esse codigo tbm funciona mas pode dar erro e pode perder atualizações de estado.
+
+    setTodoList((oldstate) => oldstate.filter((todo) => todo.id !== todoID));
+    //usar esse codigo para operaçoes assincronas
+  }
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <Header />
@@ -97,6 +128,7 @@ export function App() {
                   todo={todo}
                   onDeleteTodo={deleteTodo}
                   onToggleFavorite={toggleFavorite}
+                  onEditTodo={editTodo}
                 />
               ))}
           </Container03>
@@ -112,6 +144,7 @@ export function App() {
                   todo={todo}
                   onDeleteTodo={deleteTodo}
                   onToggleFavorite={toggleFavorite}
+                  onEditTodo={editTodo}
                 />
               ))}
           </Container03>
