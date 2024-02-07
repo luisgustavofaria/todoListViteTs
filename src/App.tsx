@@ -1,16 +1,16 @@
-import { ThemeProvider } from "styled-components";
-import { defaultTheme } from "./styles/themes/default";
-import { GlobalStyle } from "./styles/global";
-import { Header } from "./components/Header";
+import { ThemeProvider } from 'styled-components';
+import { defaultTheme } from './styles/themes/default';
+import { GlobalStyle } from './styles/global';
+import { Header } from './components/Header';
 import {
   Container01,
   Container02,
   Container03,
-} from "./components/Container/styles";
-import { Todo } from "./components/Todo";
-import { TodoForm } from "./components/TodoForm";
-import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+} from './components/Container/styles';
+import { Todo } from './components/Todo';
+import { TodoForm } from './components/TodoForm';
+import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 export interface ITodoList {
   id: string;
@@ -23,16 +23,16 @@ export function App() {
   const [todoList, setTodoList] = useState<ITodoList[]>([
     {
       id: uuidv4(),
-      title: "primeiro",
-      description: "tarefa",
+      title: 'primeiro',
+      description: 'tarefa',
       isFavorited: true,
     },
   ]);
 
-  function addToDo(
+  function addTodo(
     newTitle: string,
     newDescription: string,
-    isFavorited: boolean,
+    isFavorited: boolean
   ) {
     const data = {
       id: uuidv4(),
@@ -49,7 +49,7 @@ export function App() {
     // console.log(data.id);
   }
 
-  function deleteToDo(todoID: string) {
+  function deleteTodo(todoID: string) {
     // const newTodoList = todoList.filter((todo) => todo.id !== todoID);
     // setNewToDo(newTodoList);
     // esse codigo tbm funciona mas pode dar erro e pode perder atualizações de estado.
@@ -58,11 +58,33 @@ export function App() {
     //usar esse codigo para operaçoes assincronas
   }
 
+  function toggleFavorite(todoID: string) {
+    // const newTodoList = todoList.map((todo) => {
+    //   if (todo.id === todoID) {
+    //     return {
+    //       ...todo,
+    //       isFavorited: !todo.isFavorited,
+    //     };
+    //   }
+    //   return todo;
+    // });
+
+    // setTodoList(newTodoList);
+    // esse codigo tbm funciona mas pode dar erro e pode perder atualizações de estado.
+
+    setTodoList((oldstate) =>
+      oldstate.map((todo) =>
+        todo.id === todoID ? { ...todo, isFavorited: !todo.isFavorited } : todo
+      )
+    );
+    //usar esse codigo para operaçoes assincronas
+  }
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <Header />
       <Container01>
-        <TodoForm onAddToDo={addToDo} />
+        <TodoForm onAddToDo={addTodo} />
 
         <Container02>
           {todoList.find((todo) => todo.isFavorited) && <span>Favorito</span>}
@@ -70,7 +92,12 @@ export function App() {
             {todoList
               .filter((todo) => todo.isFavorited)
               .map((todo) => (
-                <Todo key={todo.id} todo={todo} onDeleteToDo={deleteToDo} />
+                <Todo
+                  key={todo.id}
+                  todo={todo}
+                  onDeleteTodo={deleteTodo}
+                  onToggleFavorite={toggleFavorite}
+                />
               ))}
           </Container03>
         </Container02>
@@ -80,7 +107,12 @@ export function App() {
             {todoList
               .filter((todo) => !todo.isFavorited)
               .map((todo) => (
-                <Todo key={todo.id} todo={todo} onDeleteToDo={deleteToDo} />
+                <Todo
+                  key={todo.id}
+                  todo={todo}
+                  onDeleteTodo={deleteTodo}
+                  onToggleFavorite={toggleFavorite}
+                />
               ))}
           </Container03>
         </Container02>

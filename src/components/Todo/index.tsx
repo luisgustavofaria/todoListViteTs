@@ -16,18 +16,14 @@ import { ITodoList } from '../../App';
 
 interface TodoProps {
   todo: ITodoList;
-  onDeleteToDo: (todoID: string) => void;
+  onDeleteTodo: (todoID: string) => void;
+  onToggleFavorite: (todoID: string) => void;
 }
 
-export function Todo({ todo, onDeleteToDo }: TodoProps) {
-  const [favorite, setFavorite] = useState(todo.isFavorited);
+export function Todo({ todo, onDeleteTodo, onToggleFavorite }: TodoProps) {
   const [disabled, setDisabled] = useState(true);
 
-  function changeFavorited() {
-    setFavorite((oldstate) => !oldstate);
-  }
-
-  function onEditToDo() {
+  function onEditTodo() {
     setDisabled((oldstate) => !oldstate);
   }
 
@@ -41,8 +37,8 @@ export function Todo({ todo, onDeleteToDo }: TodoProps) {
           defaultValue={todo.title}
         />
         <img
-          onClick={changeFavorited}
-          src={favorite ? favorited : nofavorited}
+          onClick={() => onToggleFavorite(todo.id)}
+          src={todo.isFavorited ? favorited : nofavorited}
           alt=""
         />
       </ContainerTodoTitle>
@@ -55,10 +51,10 @@ export function Todo({ todo, onDeleteToDo }: TodoProps) {
       </ContainerTodoTextArea>
       <TodoFooter>
         <div>
-          <img onClick={onEditToDo} src={disabled ? edit : editing} alt="" />
+          <img onClick={onEditTodo} src={disabled ? edit : editing} alt="" />
           <img src={colorEdit} alt="" />
         </div>
-        <img onClick={() => onDeleteToDo(todo.id)} src={deleted} alt="" />
+        <img onClick={() => onDeleteTodo(todo.id)} src={deleted} alt="" />
         {/* necessário usar arrow function para executar a função quando clicar no botao  */}
         {/* se usar onDeleteToDo(todo.id) a função é chamada quando renderizar a tela */}
       </TodoFooter>
