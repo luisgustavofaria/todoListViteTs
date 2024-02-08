@@ -1,18 +1,20 @@
 import {
+  Colors,
+  ContainerColors,
   ContainerTodo,
   ContainerTodoTextArea,
   ContainerTodoTitle,
   TodoFooter,
-} from "./styles";
+} from './styles';
 
-import favorited from "../../assets/favorited.svg";
-import nofavorited from "../../assets/nofavorited.svg";
-import noEdit from "../../assets/noEdit.svg";
-import edit from "../../assets/edit.svg";
-import colorEdit from "../../assets/color-edit.svg";
-import deleted from "../../assets/deleted.svg";
-import { useState } from "react";
-import { ITodoList } from "../../App";
+import favorited from '../../assets/favorited.svg';
+import nofavorited from '../../assets/nofavorited.svg';
+import noEdit from '../../assets/noEdit.svg';
+import edit from '../../assets/edit.svg';
+import colorEdit from '../../assets/color-edit.svg';
+import deleted from '../../assets/deleted.svg';
+import { useState } from 'react';
+import { ITodoList } from '../../App';
 
 interface TodoProps {
   todo: ITodoList;
@@ -21,7 +23,7 @@ interface TodoProps {
   onEditTodo: (
     todoID: string,
     editTitle: string,
-    editDescription: string,
+    editDescription: string
   ) => void;
 }
 
@@ -34,6 +36,7 @@ export function Todo({
   const [disabled, setDisabled] = useState(true);
   const [editTitle, setEditTitle] = useState(todo.title);
   const [editDescription, setEditDescription] = useState(todo.description);
+  // const allColors = [(props) => props.theme.colors];
 
   function onDisableTodo() {
     setDisabled((oldstate) => !oldstate);
@@ -76,6 +79,20 @@ export function Todo({
         {/* necessário usar arrow function para executar a função quando clicar no botao  */}
         {/* se usar onDeleteToDo(todo.id) a função é chamada quando renderizar a tela */}
       </TodoFooter>
+      <ContainerColors>
+        <Colors />
+        <Colors />
+        <Colors />
+        <Colors />
+        <Colors />
+        <Colors />
+        <Colors />
+        <Colors />
+        <Colors />
+        <Colors />
+        <Colors />
+        <Colors />
+      </ContainerColors>
     </ContainerTodo>
   );
 }

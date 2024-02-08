@@ -7,6 +7,7 @@ export const ContainerTodo = styled.div`
   height: 437px;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   background-color: white;
+  position: relative;
 
   display: flex;
   flex-direction: column;
@@ -79,3 +80,26 @@ export const TodoFooter = styled.div`
     cursor: pointer;
   }
 `;
+
+export const ContainerColors = styled.div`
+  background-color: white;
+  width: 574.61px;
+  height: 46.46px;
+  position: absolute;
+  bottom: -40px;
+  left: 40px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+`;
+
+export const Colors = styled.div`
+  width: 36.71px;
+  height: 36.71px;
+  border-radius: 50%;
+  background-color: ${(props) => props.color};
+`;
+/* background-color: ${(props) => props.theme.colors.ellipse5}; */
