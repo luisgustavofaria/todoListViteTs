@@ -15,6 +15,7 @@ import colorEdit from '../../assets/color-edit.svg';
 import deleted from '../../assets/deleted.svg';
 import { useState } from 'react';
 import { ITodoList } from '../../App';
+import { defaultTheme } from '../../styles/themes/default';
 
 interface TodoProps {
   todo: ITodoList;
@@ -36,8 +37,8 @@ export function Todo({
   const [disabled, setDisabled] = useState(true);
   const [editTitle, setEditTitle] = useState(todo.title);
   const [editDescription, setEditDescription] = useState(todo.description);
-  // const allColors = [(props) => props.theme.colors];
-
+  const allColors = defaultTheme.colors
+  
   function onDisableTodo() {
     setDisabled((oldstate) => !oldstate);
 
@@ -80,18 +81,14 @@ export function Todo({
         {/* se usar onDeleteToDo(todo.id) a função é chamada quando renderizar a tela */}
       </TodoFooter>
       <ContainerColors>
-        <Colors />
-        <Colors />
-        <Colors />
-        <Colors />
-        <Colors />
-        <Colors />
-        <Colors />
-        <Colors />
-        <Colors />
-        <Colors />
-        <Colors />
-        <Colors />
+      {/* <Colors /> */}
+       {
+        allColors.map((color) => {
+          return (
+            <Colors key={color} backColor={color}/>
+          )
+        })
+       }      
       </ContainerColors>
     </ContainerTodo>
   );

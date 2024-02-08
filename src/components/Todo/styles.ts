@@ -100,6 +100,6 @@ export const Colors = styled.div`
   width: 36.71px;
   height: 36.71px;
   border-radius: 50%;
-  background-color: ${(props) => props.color};
+  background-color: ${({backColor}) => backColor};
 `;
 /* background-color: ${(props) => props.theme.colors.ellipse5}; */
