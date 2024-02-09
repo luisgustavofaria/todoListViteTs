@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface ColorsProps {
-  backgroundColor: string;
+  $backgroundColor: string;
 }
 
 export const ContainerTodo = styled.div`
@@ -104,6 +104,6 @@ export const Colors = styled.div<ColorsProps>`
   width: 36.71px;
   height: 36.71px;
   border-radius: 50%;
-  background-color: ${({ backgroundColor }) => backgroundColor};
+  background-color: ${({ $backgroundColor }) => $backgroundColor};
 `;
 /* background-color: ${(props) => props.theme.colors.ellipse5}; */

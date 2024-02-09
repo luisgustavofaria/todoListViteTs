@@ -33,7 +33,7 @@ export function App() {
   ]);
 
   useEffect(() => {
-    // console.log(todoList);
+    console.log(todoList);
   }, [todoList]);
 
   function addTodo(

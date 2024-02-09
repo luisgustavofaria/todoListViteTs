@@ -83,7 +83,7 @@ export function Todo({
       </TodoFooter>
       <ContainerColors>
         {colorsArray.map((color) => {
-          return <Colors key={color} backgroundColor={color} />;
+          return <Colors key={color} $backgroundColor={color} />;
         })}
       </ContainerColors>
     </ContainerTodo>
