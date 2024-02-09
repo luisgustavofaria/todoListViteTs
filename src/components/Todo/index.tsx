@@ -37,8 +37,9 @@ export function Todo({
   const [disabled, setDisabled] = useState(true);
   const [editTitle, setEditTitle] = useState(todo.title);
   const [editDescription, setEditDescription] = useState(todo.description);
-  const allColors = defaultTheme.colors
-  
+  const colorsObject = defaultTheme.colors;
+  const colorsArray = [...Object.values(colorsObject)];
+
   function onDisableTodo() {
     setDisabled((oldstate) => !oldstate);
 
@@ -81,14 +82,9 @@ export function Todo({
         {/* se usar onDeleteToDo(todo.id) a função é chamada quando renderizar a tela */}
       </TodoFooter>
       <ContainerColors>
-      {/* <Colors /> */}
-       {
-        allColors.map((color) => {
-          return (
-            <Colors key={color} backColor={color}/>
-          )
-        })
-       }      
+        {colorsArray.map((color) => {
+          return <Colors key={color} backgroundColor={color} />;
+        })}
       </ContainerColors>
     </ContainerTodo>
   );

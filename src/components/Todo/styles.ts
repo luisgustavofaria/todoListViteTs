@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface ColorsProps {
+  backgroundColor: string;
+}
+
 export const ContainerTodo = styled.div`
   border-radius: 20px;
   width: 100%;
@@ -96,10 +100,10 @@ export const ContainerColors = styled.div`
   justify-content: space-around;
 `;
 
-export const Colors = styled.div`
+export const Colors = styled.div<ColorsProps>`
   width: 36.71px;
   height: 36.71px;
   border-radius: 50%;
-  background-color: ${({backColor}) => backColor};
+  background-color: ${({ backgroundColor }) => backgroundColor};
 `;
 /* background-color: ${(props) => props.theme.colors.ellipse5}; */
