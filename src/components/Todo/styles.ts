@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 interface ColorsProps {
   $backgroundColor: string;
@@ -98,6 +98,16 @@ export const ContainerColors = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
+  z-index: 1;
+
+  @media (max-width: 860px) {
+    width: 290px;
+    height: 100px;
+    flex-wrap: wrap;
+    gap: 10px;
+    z-index: 1;
+    bottom: -90px;
+  }
 `;
 
 export const Colors = styled.div<ColorsProps>`
@@ -105,5 +115,10 @@ export const Colors = styled.div<ColorsProps>`
   height: 36.71px;
   border-radius: 50%;
   background-color: ${({ $backgroundColor }) => $backgroundColor};
+  cursor: pointer;
+
+  @media (max-width: 800px) {
+    max-width: 390px;
+  }
 `;
 /* background-color: ${(props) => props.theme.colors.ellipse5}; */
