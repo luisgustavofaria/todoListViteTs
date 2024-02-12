@@ -38,7 +38,7 @@ export function Todo({
   const [disabled, setDisabled] = useState(true);
   const [editTitle, setEditTitle] = useState(todo.title);
   const [editDescription, setEditDescription] = useState(todo.description);
-  const [editColor, setEditColor] = useState(true);
+  const [hiddenDivColor, setHiddenDivColor] = useState(true);
 
   const colorsObject = defaultTheme.colors;
   const colorsArray = [...Object.values(colorsObject)];
@@ -51,8 +51,8 @@ export function Todo({
     }
   }
 
-  function onToggleEditColor() {
-    setEditColor((oldstate) => !oldstate);
+  function onHiddenDivColor() {
+    setHiddenDivColor((oldstate) => !oldstate);
   }
 
   return (
@@ -83,8 +83,8 @@ export function Todo({
         <div>
           <img onClick={onDisableTodo} src={disabled ? noEdit : edit} alt="" />
           <img
-            onClick={onToggleEditColor}
-            src={editColor ? colorEdit : colorEditing}
+            onClick={onHiddenDivColor}
+            src={hiddenDivColor ? colorEdit : colorEditing}
             alt=""
           />
         </div>
@@ -92,7 +92,7 @@ export function Todo({
         {/* necessário usar arrow function para executar a função quando clicar no botao  */}
         {/* se usar onDeleteToDo(todo.id) a função é chamada quando renderizar a tela */}
       </TodoFooter>
-      {!editColor && (
+      {!hiddenDivColor && (
         <ContainerColors>
           {colorsArray.map((color) => {
             return <Colors key={color} $backgroundColor={color} />;
