@@ -1,17 +1,17 @@
-import { ThemeProvider } from 'styled-components';
-import { defaultTheme } from './styles/themes/default';
-import { GlobalStyle } from './styles/global';
-import { Header } from './components/Header';
+import { ThemeProvider } from "styled-components";
+import { defaultTheme } from "./styles/themes/default";
+import { GlobalStyle } from "./styles/global";
+import { Header } from "./components/Header";
 import {
   Container01,
   Container02,
   Container03,
-} from './components/Container/styles';
-import { Todo } from './components/Todo';
-import { TodoForm } from './components/TodoForm';
-import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import { useEffect } from 'react';
+} from "./components/Container/styles";
+import { Todo } from "./components/Todo";
+import { TodoForm } from "./components/TodoForm";
+import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+import { useEffect } from "react";
 
 export interface ITodoList {
   id: string;
@@ -25,10 +25,10 @@ export function App() {
   const [todoList, setTodoList] = useState<ITodoList[]>([
     {
       id: uuidv4(),
-      title: 'primeiro',
-      description: 'tarefa',
+      title: "primeiro",
+      description: "tarefa",
       isFavorited: true,
-      color: 'red',
+      color: "red",
     },
   ]);
 
@@ -39,14 +39,14 @@ export function App() {
   function addTodo(
     newTitle: string,
     newDescription: string,
-    isFavorited: boolean
+    isFavorited: boolean,
   ) {
     const data = {
       id: uuidv4(),
       title: newTitle,
       description: newDescription,
       isFavorited: isFavorited,
-      color: 'red',
+      color: "red",
     };
     setTodoList((oldstate) => [...oldstate, data]); //usar esse codigo para operaçoes assincronas
     // setTodoList([...todoList, data]); esse codigo tbm funciona mas pode dar erro.
@@ -73,8 +73,8 @@ export function App() {
 
     setTodoList((oldstate) =>
       oldstate.map((todo) =>
-        todo.id === todoID ? { ...todo, isFavorited: !todo.isFavorited } : todo
-      )
+        todo.id === todoID ? { ...todo, isFavorited: !todo.isFavorited } : todo,
+      ),
     );
     //usar esse codigo para operaçoes assincronas
   }
@@ -82,7 +82,7 @@ export function App() {
   function editTodo(
     todoID: string,
     editTitle: string,
-    editDescription: string
+    editDescription: string,
   ) {
     // const newTodoList = todoList.map((todo) => {
     //   if (todo.id === todoID) {
@@ -104,8 +104,8 @@ export function App() {
       oldstate.map((todo) =>
         todo.id === todoID
           ? { ...todo, title: editTitle, description: editDescription }
-          : todo
-      )
+          : todo,
+      ),
     );
     // console.log(todoList);
   }
@@ -124,39 +124,42 @@ export function App() {
       <Header />
       <Container01>
         <TodoForm onAddToDo={addTodo} />
-
-        <Container02>
-          {todoList.find((todo) => todo.isFavorited) && <span>Favorito</span>}
-          <Container03>
-            {todoList
-              .filter((todo) => todo.isFavorited)
-              .map((todo) => (
-                <Todo
-                  key={todo.id}
-                  todo={todo}
-                  onDeleteTodo={deleteTodo}
-                  onToggleFavorite={toggleFavorite}
-                  onEditTodo={editTodo}
-                />
-              ))}
-          </Container03>
-        </Container02>
-        <Container02>
-          {todoList.find((todo) => !todo.isFavorited) && <span>Outros</span>}
-          <Container03>
-            {todoList
-              .filter((todo) => !todo.isFavorited)
-              .map((todo) => (
-                <Todo
-                  key={todo.id}
-                  todo={todo}
-                  onDeleteTodo={deleteTodo}
-                  onToggleFavorite={toggleFavorite}
-                  onEditTodo={editTodo}
-                />
-              ))}
-          </Container03>
-        </Container02>
+        {todoList.find((todo) => todo.isFavorited) && (
+          <Container02>
+            <span>Favorito</span>
+            <Container03>
+              {todoList
+                .filter((todo) => todo.isFavorited)
+                .map((todo) => (
+                  <Todo
+                    key={todo.id}
+                    todo={todo}
+                    onDeleteTodo={deleteTodo}
+                    onToggleFavorite={toggleFavorite}
+                    onEditTodo={editTodo}
+                  />
+                ))}
+            </Container03>
+          </Container02>
+        )}
+        {todoList.find((todo) => !todo.isFavorited) && (
+          <Container02>
+            <span>Outros</span>
+            <Container03>
+              {todoList
+                .filter((todo) => !todo.isFavorited)
+                .map((todo) => (
+                  <Todo
+                    key={todo.id}
+                    todo={todo}
+                    onDeleteTodo={deleteTodo}
+                    onToggleFavorite={toggleFavorite}
+                    onEditTodo={editTodo}
+                  />
+                ))}
+            </Container03>
+          </Container02>
+        )}
       </Container01>
       <GlobalStyle />
     </ThemeProvider>
