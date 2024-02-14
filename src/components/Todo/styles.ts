@@ -1,16 +1,20 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface ColorsProps {
+  $circleColor: string;
+}
+
+interface BackgroundColorProps {
   $backgroundColor: string;
 }
 
-export const ContainerTodo = styled.div`
+export const ContainerTodo = styled.div<BackgroundColorProps>`
   border-radius: 20px;
   width: 100%;
   max-width: 390px;
   height: 437px;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-  background-color: white;
+  background-color: ${({ $backgroundColor }) => $backgroundColor};
   position: relative;
 
   display: flex;
@@ -29,7 +33,7 @@ export const ContainerTodoTitle = styled.div`
     padding: 5px;
     border: none;
     flex-grow: 1;
-    background-color: white;
+    background-color: transparent;
   }
 
   ::placeholder {
@@ -60,7 +64,7 @@ export const ContainerTodoTextArea = styled.div`
     height: 100%;
     border: none;
     resize: none;
-    background-color: white;
+    background-color: transparent;
     overflow: hidden;
   }
   :focus-visible {
@@ -114,7 +118,7 @@ export const Colors = styled.div<ColorsProps>`
   width: 36.71px;
   height: 36.71px;
   border-radius: 50%;
-  background-color: ${({ $backgroundColor }) => $backgroundColor};
+  background-color: ${({ $circleColor }) => $circleColor};
   cursor: pointer;
 
   @media (max-width: 800px) {

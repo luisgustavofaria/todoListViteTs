@@ -5,18 +5,18 @@ import {
   ContainerTodoTextArea,
   ContainerTodoTitle,
   TodoFooter,
-} from "./styles";
+} from './styles';
 
-import favorited from "../../assets/favorited.svg";
-import nofavorited from "../../assets/nofavorited.svg";
-import noEdit from "../../assets/noEdit.svg";
-import edit from "../../assets/edit.svg";
-import colorEdit from "../../assets/color-edit.svg";
-import colorEditing from "../../assets/color-editing.svg";
-import deleted from "../../assets/deleted.svg";
-import { useState } from "react";
-import { ITodoList } from "../../App";
-import { defaultTheme } from "../../styles/themes/default";
+import favorited from '../../assets/favorited.svg';
+import nofavorited from '../../assets/nofavorited.svg';
+import noEdit from '../../assets/noEdit.svg';
+import edit from '../../assets/edit.svg';
+import colorEdit from '../../assets/color-edit.svg';
+import colorEditing from '../../assets/color-editing.svg';
+import deleted from '../../assets/deleted.svg';
+import { useState } from 'react';
+import { ITodoList } from '../../App';
+import { defaultTheme } from '../../styles/themes/default';
 
 interface TodoProps {
   todo: ITodoList;
@@ -25,8 +25,9 @@ interface TodoProps {
   onEditTodo: (
     todoID: string,
     editTitle: string,
-    editDescription: string,
+    editDescription: string
   ) => void;
+  onEditBackgroundColorDiv: (color: string) => void;
 }
 
 export function Todo({
@@ -34,11 +35,13 @@ export function Todo({
   onDeleteTodo,
   onToggleFavorite,
   onEditTodo,
-}: TodoProps) {
+}: // onEditBackgroundColorDiv,
+TodoProps) {
   const [disabled, setDisabled] = useState(true);
   const [editTitle, setEditTitle] = useState(todo.title);
   const [editDescription, setEditDescription] = useState(todo.description);
   const [hiddenDivColor, setHiddenDivColor] = useState(true);
+  const [divColor, setDivColor] = useState('white');
 
   const colorsObject = defaultTheme.colors;
   const colorsArray = [...Object.values(colorsObject)];
@@ -56,7 +59,7 @@ export function Todo({
   }
 
   return (
-    <ContainerTodo>
+    <ContainerTodo $backgroundColor={divColor}>
       <ContainerTodoTitle>
         <input
           type="text"
@@ -95,7 +98,13 @@ export function Todo({
       {!hiddenDivColor && (
         <ContainerColors>
           {colorsArray.map((color) => {
-            return <Colors key={color} $backgroundColor={color} />;
+            return (
+              <Colors
+                onClick={() => setDivColor(color)}
+                key={color}
+                $circleColor={color}
+              />
+            );
           })}
         </ContainerColors>
       )}
