@@ -28,7 +28,7 @@ export function App() {
     //   title: 'primeiro',
     //   description: 'tarefa',
     //   isFavorited: true,
-    //   color: '',
+    //   color: 'red',
     // },
   ]);
 
@@ -138,9 +138,13 @@ export function App() {
     //usar esse codigo para operaçoes assincronas
   }
 
+  function searchTodo(searchTodoID: string) {
+    console.log(searchTodoID);
+  }
+
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Header />
+      <Header onSearchTodo={searchTodo} />
       <Container01>
         <TodoForm onAddToDo={addTodo} />
         {todoList.find((todo) => todo.isFavorited) && (

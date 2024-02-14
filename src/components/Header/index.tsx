@@ -8,8 +8,19 @@ import {
 import coreNotesDesktop from '../../assets/core-notes-desktop.svg';
 import deleted from '../../assets/deleted.svg';
 import search from '../../assets/search.svg';
+import { useState } from 'react';
 
-export function Header() {
+interface HeaderProps {
+  onSearchTodo: (searchValue: string) => void;
+}
+export function Header({ onSearchTodo }: HeaderProps) {
+  const [searchValue, setSearchValue] = useState<string>('');
+
+  function handleSearchValue(event: React.ChangeEvent<HTMLInputElement>) {
+    setSearchValue(event.target.value);
+    onSearchTodo(searchValue);
+  }
+
   return (
     <StyledHeader>
       <ContainerHeader>
@@ -17,7 +28,12 @@ export function Header() {
           <img src={coreNotesDesktop} alt="core-notes-desktop" />
           <p>CoreNotes</p>
           <StyledLabel>
-            <input type="text" placeholder="Pesquisar Notas" />
+            <input
+              type="text"
+              placeholder="Pesquisar Notas"
+              value={searchValue}
+              onChange={handleSearchValue}
+            />
             <img src={search} alt="" />
           </StyledLabel>
         </ContainerHeaderDiv01>
