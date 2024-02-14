@@ -23,13 +23,13 @@ export interface ITodoList {
 
 export function App() {
   const [todoList, setTodoList] = useState<ITodoList[]>([
-    {
-      id: uuidv4(),
-      title: 'primeiro',
-      description: 'tarefa',
-      isFavorited: true,
-      color: 'red',
-    },
+    // {
+    //   id: uuidv4(),
+    //   title: 'primeiro',
+    //   description: 'tarefa',
+    //   isFavorited: true,
+    //   color: '',
+    // },
   ]);
 
   useEffect(() => {
@@ -46,7 +46,7 @@ export function App() {
       title: newTitle,
       description: newDescription,
       isFavorited: isFavorited,
-      color: 'red',
+      color: 'white',
     };
     setTodoList((oldstate) => [...oldstate, data]); //usar esse codigo para operaçoes assincronas
     // setTodoList([...todoList, data]); esse codigo tbm funciona mas pode dar erro.
@@ -110,8 +110,23 @@ export function App() {
     // console.log(todoList);
   }
 
-  function editBackgroundColorDiv(colorID: string) {
-    console.log(colorID);
+  function editBackgroundColorDiv(todoID: string, colorID: string) {
+    // const newTodoList = todoList.map((todo) => {
+    //   if (todo.id === todoID) {
+    //     return {
+    //       ...todo,
+    //       color: colorID,
+    //     };
+    //   }
+    //   return todo;
+    // });
+    // setTodoList(newTodoList);
+
+    setTodoList((oldstate) =>
+      oldstate.map((todo) =>
+        todo.id === todoID ? { ...todo, color: colorID } : todo
+      )
+    );
   }
 
   function deleteTodo(todoID: string) {
