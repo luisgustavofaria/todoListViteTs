@@ -27,7 +27,7 @@ interface TodoProps {
     editTitle: string,
     editDescription: string
   ) => void;
-  onEditBackgroundColorDiv: (color: string) => void;
+  onEditBackgroundColorDiv: (todoID: string, color: string) => void;
 }
 
 export function Todo({
@@ -35,13 +35,13 @@ export function Todo({
   onDeleteTodo,
   onToggleFavorite,
   onEditTodo,
-}: // onEditBackgroundColorDiv,
-TodoProps) {
+  onEditBackgroundColorDiv,
+}: TodoProps) {
   const [disabled, setDisabled] = useState(true);
   const [editTitle, setEditTitle] = useState(todo.title);
   const [editDescription, setEditDescription] = useState(todo.description);
   const [hiddenDivColor, setHiddenDivColor] = useState(true);
-  const [divColor, setDivColor] = useState('white');
+  const [divColor, setDivColor] = useState(todo.color);
 
   const colorsObject = defaultTheme.colors;
   const colorsArray = [...Object.values(colorsObject)];
@@ -56,6 +56,10 @@ TodoProps) {
 
   function onHiddenDivColor() {
     setHiddenDivColor((oldstate) => !oldstate);
+
+    if (!hiddenDivColor) {
+      onEditBackgroundColorDiv(todo.id, divColor);
+    }
   }
 
   return (
