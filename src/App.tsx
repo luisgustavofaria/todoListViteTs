@@ -139,6 +139,12 @@ export function App() {
   }
 
   function searchTodo(searchTodoID: string) {
+    const filterList = todoList.filter((todo) => {
+      return `${todo.title?.toLocaleLowerCase()}${todo.description?.toLocaleLowerCase()}`.includes(
+        searchTodoID
+      );
+    });
+    setTodoList(filterList);
     console.log(searchTodoID);
   }
 
