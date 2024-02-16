@@ -23,13 +23,27 @@ export interface ITodoList {
 
 export function App() {
   const [todoList, setTodoList] = useState<ITodoList[]>([
-    // {
-    //   id: uuidv4(),
-    //   title: 'primeiro',
-    //   description: 'tarefa',
-    //   isFavorited: true,
-    //   color: 'red',
-    // },
+    {
+      id: uuidv4(),
+      title: 'primeiro',
+      description: 'tarefa',
+      isFavorited: true,
+      color: 'red',
+    },
+    {
+      id: uuidv4(),
+      title: 'segundo',
+      description: 'tarefa',
+      isFavorited: true,
+      color: 'red',
+    },
+    {
+      id: uuidv4(),
+      title: 'terceiro',
+      description: 'tarefa',
+      isFavorited: true,
+      color: 'red',
+    },
   ]);
 
   useEffect(() => {
@@ -138,26 +152,42 @@ export function App() {
     //usar esse codigo para operaçoes assincronas
   }
 
+  // function searchTodo(searchTodoID: string) {
+  //   const filterList = searchTodoID
+  //     ? todoList.filter((todo) =>
+  //         `${todo.title?.toLocaleLowerCase()}${todo.description?.toLocaleLowerCase()}`.includes(
+  //           searchTodoID
+  //         )
+  //       )
+  //     : [...todoList];
+  //   setTodoList(filterList);
+
+  //   console.log(searchTodoID);
+  // }
+  const [searchTerm, setSearchTerm] = useState('');
+
   function searchTodo(searchTodoID: string) {
-    const filterList = todoList.filter((todo) => {
-      return `${todo.title?.toLocaleLowerCase()}${todo.description?.toLocaleLowerCase()}`.includes(
-        searchTodoID
-      );
-    });
-    setTodoList(filterList);
-    console.log(searchTodoID);
+    setSearchTerm(searchTodoID); // Atualiza o estado com o termo de pesquisa
   }
+
+  const filterList = searchTerm
+    ? todoList.filter((todo) =>
+        `${todo.title?.toLocaleLowerCase()}${todo.description?.toLocaleLowerCase()}`.includes(
+          searchTerm
+        )
+      )
+    : [...todoList];
 
   return (
     <ThemeProvider theme={defaultTheme}>
       <Header onSearchTodo={searchTodo} />
       <Container01>
         <TodoForm onAddToDo={addTodo} />
-        {todoList.find((todo) => todo.isFavorited) && (
+        {filterList.find((todo) => todo.isFavorited) && (
           <Container02>
             <span>Favorito</span>
             <Container03>
-              {todoList
+              {filterList
                 .filter((todo) => todo.isFavorited)
                 .map((todo) => (
                   <Todo
@@ -172,11 +202,11 @@ export function App() {
             </Container03>
           </Container02>
         )}
-        {todoList.find((todo) => !todo.isFavorited) && (
+        {filterList.find((todo) => !todo.isFavorited) && (
           <Container02>
             <span>Outros</span>
             <Container03>
-              {todoList
+              {filterList
                 .filter((todo) => !todo.isFavorited)
                 .map((todo) => (
                   <Todo
