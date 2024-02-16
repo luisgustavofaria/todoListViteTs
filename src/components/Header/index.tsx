@@ -17,8 +17,9 @@ export function Header({ onSearchTodo }: HeaderProps) {
   const [searchValue, setSearchValue] = useState<string>('');
 
   function handleSearchValue(event: React.ChangeEvent<HTMLInputElement>) {
-    setSearchValue(event.target.value);
-    onSearchTodo(searchValue);
+    const inputValue = event.target.value;
+    setSearchValue(inputValue);
+    onSearchTodo(inputValue);
   }
 
   return (
