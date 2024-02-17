@@ -22,6 +22,11 @@ export function Header({ onSearchTodo }: HeaderProps) {
     onSearchTodo(inputValue);
   }
 
+  function clearSearchValue() {
+    setSearchValue('');
+    onSearchTodo('');
+  }
+
   return (
     <StyledHeader>
       <ContainerHeader>
@@ -38,7 +43,7 @@ export function Header({ onSearchTodo }: HeaderProps) {
             <img src={search} alt="" />
           </StyledLabel>
         </ContainerHeaderDiv01>
-        <ContainerHeaderDiv02>
+        <ContainerHeaderDiv02 onClick={clearSearchValue}>
           <img src={deleted} alt="" />
         </ContainerHeaderDiv02>
       </ContainerHeader>

@@ -151,7 +151,6 @@ export function App() {
     setTodoList((oldstate) => oldstate.filter((todo) => todo.id !== todoID));
     //usar esse codigo para operaçoes assincronas
   }
-
   // function searchTodo(searchTodoID: string) {
   //   const filterList = searchTodoID
   //     ? todoList.filter((todo) =>
@@ -162,8 +161,9 @@ export function App() {
   //     : [...todoList];
   //   setTodoList(filterList);
 
-  //   console.log(searchTodoID);
+  //   DESTA FORMA NAO FUNCIONA POIS ATUALIZA O ESTADO E NAO ARMAZENA A LISTA
   // }
+
   const [searchTerm, setSearchTerm] = useState('');
 
   function searchTodo(searchTodoID: string) {
