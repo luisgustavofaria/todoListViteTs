@@ -7,34 +7,27 @@ import {
 import favorited from '../../assets/favorited.svg';
 import nofavorited from '../../assets/nofavorited.svg';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 interface TodoFormProps {
   onAddToDo: (title: string, description: string, isFavorited: boolean) => void;
 }
 
+interface TodoFormData {
+  title: string;
+  description: string;
+}
+
 export function TodoForm({ onAddToDo }: TodoFormProps) {
-  const [newTitle, setNewTitle] = useState('');
-  const [newDescription, setNewDescription] = useState('');
+  const { register, handleSubmit, reset } = useForm<TodoFormData>();
+
   const [isFavorited, setIsFavorited] = useState(false);
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    onAddToDo(newTitle, newDescription, isFavorited);
-    setNewTitle('');
-    setNewDescription('');
+  function onSubmitForm(data: TodoFormData) {
+    onAddToDo(data.title, data.description, isFavorited);
+    console.log(data);
+    reset();
     setIsFavorited(false);
-  }
-
-  function handleNewTitle(event: React.ChangeEvent<HTMLInputElement>) {
-    event.preventDefault();
-
-    setNewTitle(event?.target.value);
-  }
-
-  function handleNewDescription(event: React.ChangeEvent<HTMLInputElement>) {
-    event.preventDefault();
-
-    setNewDescription(event?.target.value);
   }
 
   function changeFavorited() {
@@ -42,15 +35,9 @@ export function TodoForm({ onAddToDo }: TodoFormProps) {
   }
 
   return (
-    <ContainerForm onSubmit={handleSubmit}>
+    <ContainerForm onSubmit={handleSubmit(onSubmitForm)}>
       <ContainerFormTitle>
-        <input
-          name="title"
-          type="text"
-          placeholder="Título"
-          onChange={handleNewTitle}
-          value={newTitle}
-        />
+        <input type="text" placeholder="Título" {...register('title')} />
         <img
           onClick={changeFavorited}
           src={isFavorited ? favorited : nofavorited}
@@ -59,11 +46,9 @@ export function TodoForm({ onAddToDo }: TodoFormProps) {
       </ContainerFormTitle>
       <ContainerFormTextArea>
         <input
-          name="description"
           type="text"
           placeholder="Criar Nota..."
-          onChange={handleNewDescription}
-          value={newDescription}
+          {...register('description')}
         />
       </ContainerFormTextArea>
       <button></button>
