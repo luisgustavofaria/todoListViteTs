@@ -8,6 +8,8 @@ import favorited from '../../assets/favorited.svg';
 import nofavorited from '../../assets/nofavorited.svg';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 
 interface TodoFormProps {
   onAddToDo: (title: string, description: string, isFavorited: boolean) => void;
@@ -18,10 +20,22 @@ interface TodoFormData {
   description: string;
 }
 
-export function TodoForm({ onAddToDo }: TodoFormProps) {
-  const { register, handleSubmit, reset } = useForm<TodoFormData>();
+const todoSchema = z.object({
+  title: z.string().min(1, 'Informe um titulo').max(50),
+  description: z.string().min(1, 'Informe uma descrição').max(200),
+});
 
+export function TodoForm({ onAddToDo }: TodoFormProps) {
   const [isFavorited, setIsFavorited] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<TodoFormData>({
+    resolver: zodResolver(todoSchema),
+  });
 
   function onSubmitForm(data: TodoFormData) {
     onAddToDo(data.title, data.description, isFavorited);
@@ -44,6 +58,9 @@ export function TodoForm({ onAddToDo }: TodoFormProps) {
           alt=""
         />
       </ContainerFormTitle>
+      {errors.title && (
+        <strong style={{ color: '#ff0000' }}>{errors.title.message}</strong>
+      )}
       <ContainerFormTextArea>
         <input
           type="text"
@@ -51,6 +68,11 @@ export function TodoForm({ onAddToDo }: TodoFormProps) {
           {...register('description')}
         />
       </ContainerFormTextArea>
+      {errors.description && (
+        <strong style={{ color: '#ff0000' }}>
+          {errors.description.message}
+        </strong>
+      )}
       <button></button>
       {/* button serve somente para funcionar o onSubmit */}
     </ContainerForm>
