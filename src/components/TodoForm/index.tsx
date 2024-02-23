@@ -35,6 +35,10 @@ export function TodoForm({ onAddToDo }: TodoFormProps) {
     formState: { errors },
   } = useForm<TodoFormData>({
     resolver: zodResolver(todoSchema),
+    defaultValues: {
+      title: '',
+      description: '',
+    },
   });
 
   function onSubmitForm(data: TodoFormData) {
@@ -73,7 +77,7 @@ export function TodoForm({ onAddToDo }: TodoFormProps) {
           {errors.description.message}
         </strong>
       )}
-      <button></button>
+      <button type="submit"></button>
       {/* button serve somente para funcionar o onSubmit */}
     </ContainerForm>
   );
