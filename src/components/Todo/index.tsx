@@ -4,6 +4,10 @@ import {
   ContainerTodo,
   ContainerTodoTextArea,
   ContainerTodoTitle,
+  Content,
+  DivActionCancel,
+  DivButton,
+  Overlay,
   TodoFooter,
 } from './styles';
 
@@ -17,6 +21,8 @@ import deleted from '../../assets/deleted.svg';
 import { useState } from 'react';
 import { ITodoList } from '../../App';
 import { defaultTheme } from '../../styles/themes/default';
+
+import * as AlertDialog from '@radix-ui/react-alert-dialog';
 
 interface TodoProps {
   todo: ITodoList;
@@ -95,9 +101,35 @@ export function Todo({
             alt=""
           />
         </div>
-        <img onClick={() => onDeleteTodo(todo.id)} src={deleted} alt="" />
-        {/* necessário usar arrow function para executar a função quando clicar no botao  */}
-        {/* se usar onDeleteToDo(todo.id) a função é chamada quando renderizar a tela */}
+        <AlertDialog.Root>
+          <AlertDialog.Trigger asChild>
+            <img src={deleted} alt="" />
+            {/* <img onClick={() => onDeleteTodo(todo.id)} src={deleted} alt="" /> */}
+            {/* necessário usar arrow function para executar a função quando clicar no botao  */}
+            {/* se usar onDeleteToDo(todo.id) a função é chamada quando renderizar a tela */}
+          </AlertDialog.Trigger>
+
+          <AlertDialog.Portal>
+            <Overlay />
+            <Content>
+              <AlertDialog.Title>Deseja excluir essa tarefa?</AlertDialog.Title>
+              <DivActionCancel>
+                <AlertDialog.Cancel asChild>
+                  <DivButton variant={'secondary'}>Não</DivButton>
+                </AlertDialog.Cancel>
+                <AlertDialog.Action asChild>
+                  <DivButton
+                    variant={'primary'}
+                    onClick={() => onDeleteTodo(todo.id)}
+                    autoFocus
+                  >
+                    Sim
+                  </DivButton>
+                </AlertDialog.Action>
+              </DivActionCancel>
+            </Content>
+          </AlertDialog.Portal>
+        </AlertDialog.Root>
       </TodoFooter>
       {!hiddenDivColor && (
         <ContainerColors>

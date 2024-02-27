@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import * as AlertDialog from '@radix-ui/react-alert-dialog';
 
 interface ColorsProps {
   $circleColor: string;
@@ -6,6 +7,10 @@ interface ColorsProps {
 
 interface BackgroundColorProps {
   $backgroundColor: string;
+}
+
+interface ButtonProps {
+  variant: 'primary' | 'secondary';
 }
 
 export const ContainerTodo = styled.div<BackgroundColorProps>`
@@ -86,6 +91,49 @@ export const TodoFooter = styled.div`
   img {
     padding: 10px;
     cursor: pointer;
+  }
+`;
+
+export const Overlay = styled(AlertDialog.Overlay)`
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+`;
+
+export const Content = styled(AlertDialog.Content)`
+  min-width: 300px;
+  border-radius: 6px;
+  background-color: white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+`;
+
+export const DivActionCancel = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 8px;
+`;
+
+export const DivButton = styled.button<ButtonProps>`
+  padding: 7px;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  color: ${(props) => (props.variant === 'primary' ? '#F40000' : '#8A897C')};
+  background-color: ${(props) =>
+    props.variant === 'primary' ? '#F9CEC8' : '#E3E2DE'};
+  cursor: pointer;
+  border-radius: 10px;
+
+  &:hover {
+    background-color: ${(props) =>
+      props.variant === 'primary' ? '#F18C7E' : '#BDBBB2'};
   }
 `;
 
