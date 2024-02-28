@@ -1,0 +1,25 @@
+{
+  "todoList": [
+    {
+      "id": 1,
+      "title": "primeiro",
+      "description": "tarefa",
+      "isFavorited": true,
+      "color": "#A99A7C"
+    },
+    {
+      "id": 2,
+      "title": "segundo",
+      "description": "tarefa",
+      "isFavorited": false,
+      "color": "#FFCAB9"
+    },
+    {
+      "id": 3,
+      "title": "terceiro",
+      "description": "tarefa",
+      "isFavorited": true,
+      "color": "#FFA285"
+    }
+  ]
+}

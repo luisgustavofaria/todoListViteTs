@@ -22,33 +22,18 @@ export interface ITodoList {
 }
 
 export function App() {
-  const [todoList, setTodoList] = useState<ITodoList[]>([
-    {
-      id: uuidv4(),
-      title: 'primeiro',
-      description: 'tarefa',
-      isFavorited: true,
-      color: 'red',
-    },
-    {
-      id: uuidv4(),
-      title: 'segundo',
-      description: 'tarefa',
-      isFavorited: true,
-      color: 'red',
-    },
-    {
-      id: uuidv4(),
-      title: 'terceiro',
-      description: 'tarefa',
-      isFavorited: true,
-      color: 'red',
-    },
-  ]);
+  const [todoList, setTodoList] = useState<ITodoList[]>([]);
+
+  async function loadTodoList() {
+    const response = await fetch(' http://localhost:3333/todoList ');
+    const data = await response.json();
+
+    setTodoList(data);
+  }
 
   useEffect(() => {
-    console.log(todoList);
-  }, [todoList]);
+    loadTodoList();
+  }, []);
 
   function addTodo(
     newTitle: string,
