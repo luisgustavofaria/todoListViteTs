@@ -13,7 +13,7 @@ import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useEffect } from 'react';
 
-import { axiosGetTodoList } from './api/api';
+import { axiosGetTodoList, axiosPostTodoList } from './api/api';
 
 export interface ITodoList {
   id: string;
@@ -65,6 +65,11 @@ export function App() {
     // (setTodoLists([...todoLists, data])) pode perder atualizações de estado.
     //
     // console.log(data.id);
+    try {
+      axiosPostTodoList(data);
+    } catch (error) {
+      // Handle the error if needed
+    }
   }
 
   function toggleFavorite(todoID: string) {
