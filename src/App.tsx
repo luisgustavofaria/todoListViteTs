@@ -13,6 +13,8 @@ import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useEffect } from 'react';
 
+import { axiosGetTodoList } from './api/api';
+
 export interface ITodoList {
   id: string;
   title: string;
@@ -24,15 +26,24 @@ export interface ITodoList {
 export function App() {
   const [todoList, setTodoList] = useState<ITodoList[]>([]);
 
-  async function loadTodoList() {
-    const response = await fetch(' http://localhost:3333/todoList ');
-    const data = await response.json();
+  // async function loadTodoList() {
+  //   const response = await fetch(' http://localhost:3333/todoList ');
+  //   const data = await response.json();
 
-    setTodoList(data);
+  //   setTodoList(data);
+  // }
+
+  async function getTodoList() {
+    try {
+      const data = await axiosGetTodoList();
+      setTodoList(data);
+    } catch (error) {
+      // Handle the error if needed
+    }
   }
 
   useEffect(() => {
-    loadTodoList();
+    getTodoList();
   }, []);
 
   function addTodo(
