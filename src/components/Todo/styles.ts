@@ -10,7 +10,7 @@ interface BackgroundColorProps {
 }
 
 interface ButtonProps {
-  variant: 'primary' | 'secondary';
+  $variant: 'primary' | 'secondary';
 }
 
 export const ContainerTodo = styled.div<BackgroundColorProps>`
@@ -125,15 +125,15 @@ export const DivButton = styled.button<ButtonProps>`
   border: none;
   font-size: 20px;
   font-weight: bold;
-  color: ${(props) => (props.variant === 'primary' ? '#F40000' : '#8A897C')};
+  color: ${(props) => (props.$variant === 'primary' ? '#F40000' : '#8A897C')};
   background-color: ${(props) =>
-    props.variant === 'primary' ? '#F9CEC8' : '#E3E2DE'};
+    props.$variant === 'primary' ? '#F9CEC8' : '#E3E2DE'};
   cursor: pointer;
   border-radius: 10px;
 
   &:hover {
     background-color: ${(props) =>
-      props.variant === 'primary' ? '#F18C7E' : '#BDBBB2'};
+      props.$variant === 'primary' ? '#F18C7E' : '#BDBBB2'};
   }
 `;
 

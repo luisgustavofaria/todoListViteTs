@@ -22,17 +22,10 @@
       "color": "#FFA285"
     },
     {
-      "id": "efdeea1a-88cd-4e14-a858-96d0689eec78",
-      "title": "quarto",
-      "description": "tarefa",
-      "isFavorited": false,
-      "color": "white"
-    },
-    {
-      "id": "f692d047-4c2e-4437-a8f4-6b279cf53fcf",
+      "id": "99ee442f-2108-400c-8eab-78946c135cf2",
       "title": "a",
       "description": "a",
-      "isFavorited": true,
+      "isFavorited": false,
       "color": "white"
     }
   ]

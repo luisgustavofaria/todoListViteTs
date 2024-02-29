@@ -13,7 +13,11 @@ import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useEffect } from 'react';
 
-import { axiosGetTodoList, axiosPostTodoList } from './api/api';
+import {
+  axiosDeleteTodoList,
+  axiosGetTodoList,
+  axiosPostTodoList,
+} from './api/api';
 
 export interface ITodoList {
   id: string;
@@ -151,7 +155,13 @@ export function App() {
 
     setTodoList((oldstate) => oldstate.filter((todo) => todo.id !== todoID));
     //usar esse codigo para operaçoes assincronas
+    try {
+      axiosDeleteTodoList(todoID);
+    } catch (error) {
+      // Handle the error if needed
+    }
   }
+
   // function searchTodo(searchTodoID: string) {
   //   const filterList = searchTodoID
   //     ? todoList.filter((todo) =>

@@ -115,11 +115,11 @@ export function Todo({
               <AlertDialog.Title>Deseja excluir essa tarefa?</AlertDialog.Title>
               <DivActionCancel>
                 <AlertDialog.Cancel asChild>
-                  <DivButton variant={'secondary'}>Não</DivButton>
+                  <DivButton $variant={'secondary'}>Não</DivButton>
                 </AlertDialog.Cancel>
                 <AlertDialog.Action asChild>
                   <DivButton
-                    variant={'primary'}
+                    $variant={'primary'}
                     onClick={() => onDeleteTodo(todo.id)}
                     autoFocus
                   >

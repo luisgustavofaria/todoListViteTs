@@ -24,3 +24,13 @@ export const axiosPostTodoList = async (newTodo: ITodoList) => {
     throw error;
   }
 };
+
+export const axiosDeleteTodoList = async (todoID: string) => {
+  try {
+    const response = await api.delete(`/todoList/${todoID}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error deleting list:', error);
+    throw error;
+  }
+};
