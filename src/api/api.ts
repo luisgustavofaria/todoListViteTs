@@ -25,6 +25,23 @@ export const axiosPostTodoList = async (newTodo: ITodoList) => {
   }
 };
 
+export const axiosEditTodo = async (
+  todoID: string,
+  editTitle: string,
+  editDescription: string
+) => {
+  try {
+    const response = await api.patch(`/todoList/${todoID}`, {
+      title: editTitle,
+      description: editDescription,
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error editing data:', error);
+    throw error;
+  }
+};
+
 export const axiosDeleteTodoList = async (todoID: string) => {
   try {
     const response = await api.delete(`/todoList/${todoID}`);

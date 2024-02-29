@@ -15,6 +15,7 @@ import { useEffect } from 'react';
 
 import {
   axiosDeleteTodoList,
+  axiosEditTodo,
   axiosGetTodoList,
   axiosPostTodoList,
 } from './api/api';
@@ -127,6 +128,11 @@ export function App() {
       )
     );
     // console.log(todoList);
+    try {
+      axiosEditTodo(todoID, editTitle, editDescription);
+    } catch (error) {
+      // Handle the error if needed
+    }
   }
 
   function editBackgroundColorDiv(todoID: string, colorID: string) {
