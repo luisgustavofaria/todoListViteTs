@@ -15,6 +15,7 @@ import { useEffect } from 'react';
 
 import {
   axiosDeleteTodoList,
+  axiosEditBackgroundColorDiv,
   axiosEditTodo,
   axiosGetTodoList,
   axiosPostTodoList,
@@ -70,6 +71,7 @@ export function App() {
     // (setTodoLists([...todoLists, data])) pode perder atualizações de estado.
     //
     // console.log(data.id);
+
     try {
       axiosPostTodoList(data);
     } catch (error) {
@@ -152,6 +154,11 @@ export function App() {
         todo.id === todoID ? { ...todo, color: colorID } : todo
       )
     );
+    try {
+      axiosEditBackgroundColorDiv(todoID, colorID);
+    } catch (error) {
+      // Handle the error if needed
+    }
   }
 
   function deleteTodo(todoID: string) {

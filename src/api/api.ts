@@ -42,6 +42,21 @@ export const axiosEditTodo = async (
   }
 };
 
+export const axiosEditBackgroundColorDiv = async (
+  todoID: string,
+  colorID: string
+) => {
+  try {
+    const response = await api.patch(`/todoList/${todoID}`, {
+      color: colorID,
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error editing data:', error);
+    throw error;
+  }
+};
+
 export const axiosDeleteTodoList = async (todoID: string) => {
   try {
     const response = await api.delete(`/todoList/${todoID}`);
