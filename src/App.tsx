@@ -19,6 +19,7 @@ import {
   axiosEditTodo,
   axiosGetTodoList,
   axiosPostTodoList,
+  axiosToggleFavorited,
 } from './api/api';
 
 export interface ITodoList {
@@ -55,13 +56,13 @@ export function App() {
   async function addTodo(
     newTitle: string,
     newDescription: string,
-    isFavorited: boolean
+    toggleFavorite: boolean
   ) {
     const data = {
       id: uuidv4(),
       title: newTitle,
       description: newDescription,
-      isFavorited: isFavorited,
+      isFavorited: toggleFavorite,
       color: 'white',
     };
     setTodoList((oldstate) => [...oldstate, data]); //usar esse codigo para operaçoes assincronas
@@ -79,7 +80,7 @@ export function App() {
     }
   }
 
-  function toggleFavorite(todoID: string) {
+  function toggleIsFavorited(todoID: string, toggleFavorite: boolean) {
     // const newTodoList = todoList.map((todo) => {
     //   if (todo.id === todoID) {
     //     return {
@@ -95,10 +96,15 @@ export function App() {
 
     setTodoList((oldstate) =>
       oldstate.map((todo) =>
-        todo.id === todoID ? { ...todo, isFavorited: !todo.isFavorited } : todo
+        todo.id === todoID ? { ...todo, isFavorited: !toggleFavorite } : todo
       )
     );
     //usar esse codigo para operaçoes assincronas
+    try {
+      axiosToggleFavorited(todoID, toggleFavorite);
+    } catch (error) {
+      // Handle the error if needed
+    }
   }
 
   async function editTodo(
@@ -218,7 +224,7 @@ export function App() {
                     key={todo.id}
                     todo={todo}
                     onDeleteTodo={deleteTodo}
-                    onToggleFavorite={toggleFavorite}
+                    onToggleFavorite={toggleIsFavorited}
                     onEditTodo={editTodo}
                     onEditBackgroundColorDiv={editBackgroundColorDiv}
                   />
@@ -237,7 +243,7 @@ export function App() {
                     key={todo.id}
                     todo={todo}
                     onDeleteTodo={deleteTodo}
-                    onToggleFavorite={toggleFavorite}
+                    onToggleFavorite={toggleIsFavorited}
                     onEditTodo={editTodo}
                     onEditBackgroundColorDiv={editBackgroundColorDiv}
                   />

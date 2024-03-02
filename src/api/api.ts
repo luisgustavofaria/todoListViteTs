@@ -42,6 +42,21 @@ export const axiosEditTodo = async (
   }
 };
 
+export const axiosToggleFavorited = async (
+  todoID: string,
+  toggleFavorite: boolean
+) => {
+  try {
+    const response = await api.patch(`/todoList/${todoID}`, {
+      isFavorited: !toggleFavorite,
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error editing data:', error);
+    throw error;
+  }
+};
+
 export const axiosEditBackgroundColorDiv = async (
   todoID: string,
   colorID: string

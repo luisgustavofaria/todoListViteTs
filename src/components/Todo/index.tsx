@@ -27,7 +27,7 @@ import * as AlertDialog from '@radix-ui/react-alert-dialog';
 interface TodoProps {
   todo: ITodoList;
   onDeleteTodo: (todoID: string) => void;
-  onToggleFavorite: (todoID: string) => void;
+  onToggleFavorite: (todoID: string, toggleFavorite: boolean) => void;
   onEditTodo: (
     todoID: string,
     editTitle: string,
@@ -79,7 +79,7 @@ export function Todo({
           onChange={(e) => setEditTitle(e.target.value)}
         />
         <img
-          onClick={() => onToggleFavorite(todo.id)}
+          onClick={() => onToggleFavorite(todo.id, todo.isFavorited)}
           src={todo.isFavorited ? favorited : nofavorited}
           alt=""
         />

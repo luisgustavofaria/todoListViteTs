@@ -11,14 +11,20 @@
       "id": "2",
       "title": "segundo",
       "description": "tarefa",
-      "isFavorited": false,
+      "isFavorited": true,
       "color": "#FFCAB9"
     },
     {
       "id": "3",
       "title": "terceiro",
       "description": "tarefa",
-      "isFavorited": true,
+      "isFavorited": {
+        "id": "1",
+        "title": "primeiro",
+        "description": "tarefa",
+        "isFavorited": false,
+        "color": "#A99A7C"
+      },
       "color": "#DAFF8B"
     },
     {

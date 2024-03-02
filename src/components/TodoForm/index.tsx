@@ -12,7 +12,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
 interface TodoFormProps {
-  onAddToDo: (title: string, description: string, isFavorited: boolean) => void;
+  onAddToDo: (
+    title: string,
+    description: string,
+    toggleFavorite: boolean
+  ) => void;
 }
 
 interface TodoFormData {
