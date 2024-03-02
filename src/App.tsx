@@ -52,7 +52,7 @@ export function App() {
     getTodoList();
   }, []);
 
-  function addTodo(
+  async function addTodo(
     newTitle: string,
     newDescription: string,
     isFavorited: boolean
@@ -73,7 +73,7 @@ export function App() {
     // console.log(data.id);
 
     try {
-      axiosPostTodoList(data);
+      await axiosPostTodoList(data);
     } catch (error) {
       // Handle the error if needed
     }
@@ -101,7 +101,7 @@ export function App() {
     //usar esse codigo para operaçoes assincronas
   }
 
-  function editTodo(
+  async function editTodo(
     todoID: string,
     editTitle: string,
     editDescription: string
@@ -131,13 +131,13 @@ export function App() {
     );
     // console.log(todoList);
     try {
-      axiosEditTodo(todoID, editTitle, editDescription);
+      await axiosEditTodo(todoID, editTitle, editDescription);
     } catch (error) {
       // Handle the error if needed
     }
   }
 
-  function editBackgroundColorDiv(todoID: string, colorID: string) {
+  async function editBackgroundColorDiv(todoID: string, colorID: string) {
     // const newTodoList = todoList.map((todo) => {
     //   if (todo.id === todoID) {
     //     return {
@@ -155,13 +155,13 @@ export function App() {
       )
     );
     try {
-      axiosEditBackgroundColorDiv(todoID, colorID);
+      await axiosEditBackgroundColorDiv(todoID, colorID);
     } catch (error) {
       // Handle the error if needed
     }
   }
 
-  function deleteTodo(todoID: string) {
+  async function deleteTodo(todoID: string) {
     // const newTodoList = todoList.filter((todo) => todo.id !== todoID);
     // setNewToDo(newTodoList);
     // esse codigo tbm funciona mas pode dar erro e pode perder atualizações de estado.
@@ -169,7 +169,7 @@ export function App() {
     setTodoList((oldstate) => oldstate.filter((todo) => todo.id !== todoID));
     //usar esse codigo para operaçoes assincronas
     try {
-      axiosDeleteTodoList(todoID);
+      await axiosDeleteTodoList(todoID);
     } catch (error) {
       // Handle the error if needed
     }

@@ -19,14 +19,14 @@
       "title": "terceiro",
       "description": "tarefa",
       "isFavorited": true,
-      "color": "#FFA285"
+      "color": "#DAFF8B"
     },
     {
       "id": "98975ca2-a766-4ef6-a608-eed776bc9e97",
-      "title": "aa",
-      "description": "aa",
+      "title": "bbbbbbbbbbbbbbbbbbbbb",
+      "description": "aabbbbbbbbbbbbbbbbbbbbb",
       "isFavorited": false,
-      "color": "#FFE8AC"
+      "color": "#A99A7C"
     }
   ]
 }
