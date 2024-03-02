@@ -9,7 +9,7 @@ import {
 } from './components/Container/styles';
 import { Todo } from './components/Todo';
 import { TodoForm } from './components/TodoForm';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useEffect } from 'react';
 
@@ -200,13 +200,15 @@ export function App() {
     setSearchTerm(searchTodoID); // Atualiza o estado com o termo de pesquisa
   }
 
-  const filterList = searchTerm
-    ? todoList.filter((todo) =>
-        `${todo.title?.toLocaleLowerCase()}${todo.description?.toLocaleLowerCase()}`.includes(
-          searchTerm
+  const filterList = useMemo(() => {
+    return searchTerm
+      ? todoList.filter((todo) =>
+          `${todo.title?.toLocaleLowerCase()}${todo.description?.toLocaleLowerCase()}`.includes(
+            searchTerm
+          )
         )
-      )
-    : [...todoList];
+      : [...todoList];
+  }, [todoList, searchTerm]);
 
   return (
     <ThemeProvider theme={defaultTheme}>
