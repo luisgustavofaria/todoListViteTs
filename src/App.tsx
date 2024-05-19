@@ -10,17 +10,9 @@ import {
 import { Todo } from './components/Todo';
 import { TodoForm } from './components/TodoForm';
 import { useMemo, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import { useEffect } from 'react';
 
-import {
-  axiosDeleteTodoList,
-  axiosEditBackgroundColorDiv,
-  axiosEditTodo,
-  axiosGetTodoList,
-  axiosPostTodoList,
-  axiosToggleFavorited,
-} from './api/api';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 export interface ITodoList {
   id: string;
@@ -42,8 +34,8 @@ export function App() {
 
   async function getTodoList() {
     try {
-      const data = await axiosGetTodoList();
-      setTodoList(data);
+      const response = await axios.get('http://localhost:3333/tasks/list-many');
+      setTodoList(response.data);
     } catch (error) {
       // Handle the error if needed
     }
@@ -59,13 +51,11 @@ export function App() {
     toggleFavorite: boolean
   ) {
     const data = {
-      id: uuidv4(),
       title: newTitle,
       description: newDescription,
       isFavorited: toggleFavorite,
       color: 'white',
     };
-    setTodoList((oldstate) => [...oldstate, data]); //usar esse codigo para operaçoes assincronas
     // setTodoList([...todoList, data]); esse codigo tbm funciona mas pode dar erro.
     // Se durante o tempo de espera da operação assíncrona, um usuário adiciona um novo item à lista
     // (addTodoList é chamado) nesse caso, se apertar enter rapido demais, com a abordagem direta
@@ -74,9 +64,10 @@ export function App() {
     // console.log(data.id);
 
     try {
-      await axiosPostTodoList(data);
+      const task = await axios.post('http://localhost:3333/tasks/create', data);
+      setTodoList((oldstate) => [...oldstate, task.data]); //usar esse codigo para operaçoes assincronas
     } catch (error) {
-      // Handle the error if needed
+      console.error('Error adding todo:', error);
     }
   }
 
@@ -100,11 +91,11 @@ export function App() {
       )
     );
     //usar esse codigo para operaçoes assincronas
-    try {
-      axiosToggleFavorited(todoID, toggleFavorite);
-    } catch (error) {
-      // Handle the error if needed
-    }
+    // try {
+    //   axiosToggleFavorited(todoID, toggleFavorite);
+    // } catch (error) {
+    //   // Handle the error if needed
+    // }
   }
 
   async function editTodo(
@@ -136,11 +127,11 @@ export function App() {
       )
     );
     // console.log(todoList);
-    try {
-      await axiosEditTodo(todoID, editTitle, editDescription);
-    } catch (error) {
-      // Handle the error if needed
-    }
+    // try {
+    //   await axiosEditTodo(todoID, editTitle, editDescription);
+    // } catch (error) {
+    //   // Handle the error if needed
+    // }
   }
 
   async function editBackgroundColorDiv(todoID: string, colorID: string) {
@@ -160,11 +151,11 @@ export function App() {
         todo.id === todoID ? { ...todo, color: colorID } : todo
       )
     );
-    try {
-      await axiosEditBackgroundColorDiv(todoID, colorID);
-    } catch (error) {
-      // Handle the error if needed
-    }
+    // try {
+    //   await axiosEditBackgroundColorDiv(todoID, colorID);
+    // } catch (error) {
+    //   // Handle the error if needed
+    // }
   }
 
   async function deleteTodo(todoID: string) {
@@ -174,11 +165,11 @@ export function App() {
 
     setTodoList((oldstate) => oldstate.filter((todo) => todo.id !== todoID));
     //usar esse codigo para operaçoes assincronas
-    try {
-      await axiosDeleteTodoList(todoID);
-    } catch (error) {
-      // Handle the error if needed
-    }
+    // try {
+    //   await axiosDeleteTodoList(todoID);
+    // } catch (error) {
+    //   // Handle the error if needed
+    // }
   }
 
   // function searchTodo(searchTodoID: string) {
