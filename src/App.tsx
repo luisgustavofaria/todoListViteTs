@@ -71,7 +71,7 @@ export function App() {
     }
   }
 
-  function toggleIsFavorited(todoID: string, toggleFavorite: boolean) {
+  async function toggleIsFavorited(todoID: string, toggleFavorite: boolean) {
     // const newTodoList = todoList.map((todo) => {
     //   if (todo.id === todoID) {
     //     return {
@@ -91,11 +91,13 @@ export function App() {
       )
     );
     //usar esse codigo para operaçoes assincronas
-    // try {
-    //   axiosToggleFavorited(todoID, toggleFavorite);
-    // } catch (error) {
-    //   // Handle the error if needed
-    // }
+    try {
+      await axios.put(`http://localhost:3333/tasks/${todoID}`, {
+        isFavorited: !toggleFavorite,
+      });
+    } catch (error) {
+      // Handle the error if needed
+    }
   }
 
   async function editTodo(
@@ -127,11 +129,14 @@ export function App() {
       )
     );
     // console.log(todoList);
-    // try {
-    //   await axiosEditTodo(todoID, editTitle, editDescription);
-    // } catch (error) {
-    //   // Handle the error if needed
-    // }
+    try {
+      await axios.put(`http://localhost:3333/tasks/${todoID}`, {
+        title: editTitle,
+        description: editDescription,
+      });
+    } catch (error) {
+      // Handle the error if needed
+    }
   }
 
   async function editBackgroundColorDiv(todoID: string, colorID: string) {
@@ -151,11 +156,14 @@ export function App() {
         todo.id === todoID ? { ...todo, color: colorID } : todo
       )
     );
-    // try {
-    //   await axiosEditBackgroundColorDiv(todoID, colorID);
-    // } catch (error) {
-    //   // Handle the error if needed
-    // }
+    try {
+      //await axiosEditBackgroundColorDiv(todoID, colorID);
+      await axios.put(`http://localhost:3333/tasks/${todoID}`, {
+        color: colorID,
+      });
+    } catch (error) {
+      // Handle the error if needed
+    }
   }
 
   async function deleteTodo(todoID: string) {
@@ -165,11 +173,11 @@ export function App() {
 
     setTodoList((oldstate) => oldstate.filter((todo) => todo.id !== todoID));
     //usar esse codigo para operaçoes assincronas
-    // try {
-    //   await axiosDeleteTodoList(todoID);
-    // } catch (error) {
-    //   // Handle the error if needed
-    // }
+    try {
+      await axios.delete(`http://localhost:3333/tasks/${todoID}`);
+    } catch (error) {
+      // Handle the error if needed
+    }
   }
 
   // function searchTodo(searchTodoID: string) {
